@@ -1,0 +1,2242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="Banglee Blog 博客 个人博客">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Banglee Blog</title>
+	<script>
+		document.title = 'Loading | Banglee Blog';
+	</script>
+	<link rel="icon" href="https://cdn.luogu.com.cn/upload/usericon/1393230.png" type="image/png">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdmirror.com/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdmirror.com/npm/lxgw-wenkai-screen-webfont@1.7.0/style.min.css">
+	<link rel="stylesheet"
+		href="https://cdn.jsdmirror.com/gh/highlightjs/cdn-release@11.8.0/build/styles/atom-one-light.min.css">
+	<script src="https://cdn.jsdmirror.com/gh/highlightjs/cdn-release@11.8.0/build/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdmirror.com/npm/katex@0.16.9/dist/katex.min.css">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		:root {
+			--primary: #7C8FCE;
+			--primary-hover: #6577B5;
+			--secondary: #9AB8D6;
+			--accent: #B5C8E0;
+			--success: #8AC6A1;
+			--success-hover: #76B28E;
+			--danger: #E6A4A4;
+			--danger-hover: #D18B8B;
+			--warning: #E8C9A1;
+			--warning-hover: #D4B58B;
+			--dark: #4A5568;
+			--darker: #2D3748;
+			--light: #F8FAFC;
+			--lighter: #FFFFFF;
+			--gray: #94A3B8;
+			--gray-light: #E2E8F0;
+			--gray-lighter: #F1F5F9;
+			--border-radius: 16px;
+			--border-radius-sm: 8px;
+			--shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+			--shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+			--shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+			--transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+			--transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+		}
+
+		body {
+			font-family: 'LXGW Wenkai Screen', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+			min-height: 100vh;
+			color: var(--dark);
+			overflow-x: hidden;
+			background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+			line-height: 1.6;
+		}
+
+		#content {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 20px;
+			margin-top: 80px;
+			animation: fadeIn 0.8s ease-out;
+		}
+
+		.nav {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			background: rgba(255, 255, 255, 0.92);
+			backdrop-filter: blur(12px);
+			-webkit-backdrop-filter: blur(12px);
+			border-bottom: 1px solid rgba(124, 143, 206, 0.1);
+			padding: 18px 24px;
+			z-index: 1000;
+			box-shadow: var(--shadow);
+		}
+
+		.nav-content {
+			max-width: 1200px;
+			margin: 0 auto;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.logo {
+			font-size: 1.6rem;
+			font-weight: 600;
+			background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			text-decoration: none;
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			transition: var(--transition);
+		}
+
+		.logo:hover {
+			transform: translateY(-1px);
+		}
+
+		.nav-links {
+			display: flex;
+			gap: 16px;
+			align-items: center;
+		}
+
+		.btn {
+			padding: 12px 24px;
+			border-radius: var(--border-radius-sm);
+			border: none;
+			cursor: pointer;
+			font-size: 0.95rem;
+			font-weight: 500;
+			transition: var(--transition);
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			text-decoration: none;
+			position: relative;
+			overflow: hidden;
+			letter-spacing: 0.3px;
+		}
+
+		.btn-primary {
+			background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+			color: white;
+			border: 1px solid rgba(255, 255, 255, 0.2);
+		}
+
+		.btn-primary:hover {
+			transform: translateY(-2px);
+			box-shadow: var(--shadow-md);
+			background: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary) 100%);
+		}
+
+		.btn-success {
+			background: linear-gradient(135deg, var(--success) 0%, #A5D6B5 100%);
+			color: white;
+			border: 1px solid rgba(255, 255, 255, 0.2);
+		}
+
+		.btn-success:hover {
+			transform: translateY(-2px);
+			box-shadow: var(--shadow-md);
+		}
+
+		.btn-danger {
+			background: linear-gradient(135deg, var(--danger) 0%, #F0C8C8 100%);
+			color: white;
+			border: 1px solid rgba(255, 255, 255, 0.2);
+		}
+
+		.btn-danger:hover {
+			transform: translateY(-2px);
+			box-shadow: var(--shadow-md);
+		}
+
+		.btn-light {
+			background: white;
+			color: var(--dark);
+			border: 1px solid var(--gray-light);
+		}
+
+		.btn-light:hover {
+			transform: translateY(-2px);
+			box-shadow: var(--shadow);
+			background: var(--gray-lighter);
+		}
+
+		.glass-card {
+			background: rgba(255, 255, 255, 0.7);
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
+			border-radius: var(--border-radius);
+			border: 1px solid rgba(255, 255, 255, 0.4);
+			box-shadow: var(--shadow);
+			transition: var(--transition-smooth);
+		}
+
+		.article-header {
+			margin-bottom: 20px;
+			padding: 30px 40px 30px 40px;
+			background: linear-gradient(135deg, rgba(124, 143, 206, 0.08) 0%, rgba(154, 184, 214, 0.08) 100%);
+			border: 1px solid rgba(124, 143, 206, 0.15);
+			border-radius: var(--border-radius);
+			position: relative;
+			overflow: hidden;
+		}
+
+		.article-header h1 {
+			font-size: 2.8rem;
+			font-weight: 600;
+			color: var(--darker);
+			margin-bottom: 16px;
+			position: relative;
+			z-index: 1;
+		}
+
+		.article-header p {
+			font-size: 1.1rem;
+			color: var(--gray);
+			max-width: 600px;
+		}
+
+		.article-card {
+			background: var(--lighter);
+			border-radius: var(--border-radius);
+			padding: 32px;
+			margin-bottom: 24px;
+			border: 1px solid var(--gray-light);
+			box-shadow: var(--shadow);
+			transition: var(--transition-smooth);
+			position: relative;
+			overflow: hidden;
+		}
+
+		.article-card:hover {
+			transform: translateY(-4px);
+			border-color: var(--primary);
+			box-shadow: var(--shadow-lg);
+		}
+
+		.article-card::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 4px;
+			height: 100%;
+			background: linear-gradient(to bottom, var(--primary), var(--secondary));
+			border-radius: var(--border-radius) 0 0 var(--border-radius);
+		}
+
+		.article-title {
+			font-size: 1.6rem;
+			font-weight: 600;
+			margin-bottom: 16px;
+			color: var(--darker);
+			display: flex;
+			align-items: center;
+			gap: 12px;
+		}
+
+		.article-meta {
+			display: flex;
+			gap: 20px;
+			color: var(--gray);
+			font-size: 0.9rem;
+			margin-bottom: 20px;
+			flex-wrap: wrap;
+		}
+
+		.article-meta span {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+		}
+
+		.article-content-preview {
+			color: var(--dark);
+			line-height: 1.7;
+			margin-bottom: 24px;
+			font-size: 1.05rem;
+		}
+
+		.action-buttons {
+			display: flex;
+			gap: 12px;
+			flex-wrap: wrap;
+		}
+
+		.tags-container {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+			margin: 16px 0;
+		}
+
+		.tag {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			padding: 6px 14px;
+			background: rgba(124, 143, 206, 0.08);
+			color: var(--primary);
+			border-radius: 20px;
+			font-size: 0.85rem;
+			font-weight: 500;
+			border: 1px solid rgba(124, 143, 206, 0.2);
+			transition: var(--transition);
+		}
+
+		.tag:hover {
+			background: rgba(124, 143, 206, 0.15);
+			transform: translateY(-1px);
+		}
+
+		.stats-card {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			gap: 20px;
+			margin-bottom: 40px;
+		}
+
+		.stat-item {
+			background: var(--lighter);
+			padding: 28px;
+			border-radius: var(--border-radius);
+			text-align: center;
+			border: 1px solid var(--gray-light);
+			transition: var(--transition);
+		}
+
+		.stat-item:hover {
+			transform: translateY(-3px);
+			border-color: var(--primary);
+			box-shadow: var(--shadow-md);
+		}
+
+		.stat-number {
+			font-size: 2.8rem;
+			font-weight: 600;
+			background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			margin-bottom: 8px;
+		}
+
+		.stat-label {
+			color: var(--gray);
+			font-size: 0.95rem;
+			font-weight: 500;
+		}
+
+		.form-group {
+			margin-bottom: 28px;
+		}
+
+		.form-label {
+			display: block;
+			margin-bottom: 12px;
+			font-weight: 500;
+			color: var(--darker);
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		.form-input,
+		.form-textarea {
+			width: 100%;
+			padding: 16px;
+			border: 1px solid var(--gray-light);
+			border-radius: var(--border-radius-sm);
+			font-size: 1rem;
+			transition: var(--transition);
+			background: var(--lighter);
+		}
+
+		.form-input:focus,
+		.form-textarea:focus {
+			outline: none;
+			border-color: var(--primary);
+			box-shadow: 0 0 0 3px rgba(124, 143, 206, 0.1);
+		}
+
+		.form-textarea {
+			min-height: 400px;
+			resize: vertical;
+			line-height: 1.7;
+		}
+
+		.article-content {
+			font-family: 'LXGW Wenkai Screen', -apple-system, BlinkMacSystemFont, sans-serif;
+			line-height: 1.8;
+			font-size: 1.1rem;
+			color: var(--dark);
+		}
+
+		.article-content h1,
+		.article-content h2,
+		.article-content h3 {
+			font-weight: 600;
+			color: var(--darker);
+			position: relative;
+		}
+
+		.article-content h1 {
+			font-size: 2.2rem;
+			border-bottom: 2px solid var(--gray-lighter);
+		}
+
+		.article-content h2 {
+			font-size: 1.8rem;
+			border-bottom: 1px solid var(--gray-lighter);
+		}
+
+		.article-content h3 {
+			font-size: 1.5rem;
+		}
+
+		.article-content p {
+			margin: 0.5em 0;
+		}
+
+		.article-content blockquote {
+			background-color: rgba(99, 102, 241, 0.05);
+			padding: 20px;
+			padding-left: 30px;
+			margin: 25px 0;
+			color: var(--gray);
+			border-radius: 8px;
+			position: relative;
+		}
+
+		.article-content blockquote::before {
+			content: '"';
+			position: absolute;
+			top: -10px;
+			left: 8px;
+			font-size: 3rem;
+			color: var(--primary);
+			opacity: 0.2;
+		}
+
+		.article-content blockquote::after {
+			content: '"';
+			position: absolute;
+			bottom: -35px;
+			right: 10px;
+			font-size: 3rem;
+			color: var(--primary);
+			opacity: 0.2;
+		}
+
+		.article-content a {
+			white-space: nowrap;
+			position: relative;
+			text-decoration: none;
+			color: var(--dark);
+		}
+
+		.article-content a:after {
+			content: '';
+			position: absolute;
+			top: 66%;
+			left: 0em;
+			right: 0em;
+			bottom: 0;
+			transition: top 200ms cubic-bezier(0, 0.8, 0.13, 1);
+			background-color: #6366f150;
+		}
+
+		.article-content a:hover:after {
+			top: 0%;
+		}
+
+		.article-content ul,
+		.article-content ol {
+			padding-left: 28px;
+			margin: 20px 0;
+		}
+
+		li::marker {
+			color: #9AB8D6A0;
+			font-weight: 600;
+			font-size: 1.05em
+		}
+
+		li:hover::marker {
+			color: #6366f1a0;
+		}
+
+		ul>li {
+			list-style-type: circle
+		}
+
+		input[type="checkbox"]:disabled {
+			background-color: #6366f1a0;
+		}
+
+		input[type="checkbox"]:disabled {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			width: 12px;
+			height: 12px;
+			background-color: #9AB8D650;
+			border-radius: 4px;
+		}
+
+		input[type="checkbox"]:disabled:checked {
+			background-color: #6366f150;
+			background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='%23fff' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+		}
+
+		.marker-text-highlight {
+			border-radius: 5px 5px;
+			background: transparent;
+			color: var(--vp-c-text-soft);
+			background: linear-gradient(104deg, rgba(130, 255, 173, 0) 0.9%, rgba(130, 255, 173, 1.25) 2.4%, rgba(130, 255, 173, 0.5) 5.8%, rgba(130, 255, 173, 0.1) 93%, rgba(130, 255, 173, 0.7) 96%, rgba(130, 255, 1732, 0) 98%), linear-gradient(183deg, rgba(130, 255, 173, 0) 0%, rgba(130, 255, 173, 0.3) 7.9%, rgba(130, 255, 173, 0) 15%);
+		}
+
+		.marker-text,
+		.marker-text::selection {
+			text-decoration: underline;
+			text-decoration-thickness: 9px;
+			text-decoration-color: rgba(255, 228, 0, 0.4);
+			text-underline-offset: -4px;
+			text-decoration-skip-ink: none;
+		}
+
+		.Badge {
+			display: inline-block;
+			margin-left: 2px;
+			border: 1px solid transparent;
+			border-radius: 12px;
+			padding: 0 10px;
+			line-height: 22px;
+			font-size: 12px;
+			font-weight: 500;
+			transform: translateY(-2px);
+		}
+
+		.Badge.info {
+			border-color: var(--vp-badge-info-border);
+			color: var(--vp-badge-info-text);
+			background-color: var(--vp-badge-info-bg)
+		}
+
+		.Badge.tip {
+			border-color: var(--vp-badge-tip-border);
+			color: var(--vp-badge-tip-text);
+			background-color: var(--vp-badge-tip-bg)
+		}
+
+		.Badge.warning {
+			border-color: var(--vp-badge-warning-border);
+			color: var(--vp-badge-warning-text);
+			background-color: var(--vp-badge-warning-bg)
+		}
+
+		.Badge.danger {
+			border-color: var(--vp-badge-danger-border);
+			color: var(--vp-badge-danger-text);
+			background-color: var(--vp-badge-danger-bg)
+		}
+
+		:root {
+			--vp-badge-info-border: transparent;
+			--vp-badge-info-text: var(--vp-c-text-2);
+			--vp-badge-info-bg: var(--vp-c-default-soft);
+			--vp-badge-tip-border: transparent;
+			--vp-badge-tip-text: var(--vp-c-tip-1);
+			--vp-badge-tip-bg: var(--vp-c-tip-soft);
+			--vp-badge-warning-border: transparent;
+			--vp-badge-warning-text: var(--vp-c-warning-1);
+			--vp-badge-warning-bg: var(--vp-c-warning-soft);
+			--vp-badge-danger-border: transparent;
+			--vp-badge-danger-text: var(--vp-c-danger-1);
+			--vp-badge-danger-bg: var(--vp-c-danger-soft);
+		}
+
+		:root {
+			--vp-c-text-1: #3c3c43;
+			--vp-c-text-2: #67676c;
+			--vp-c-text-3: #929295;
+		}
+
+		:root {
+			--vp-c-default-1: var(--vp-c-gray-1);
+			--vp-c-default-2: var(--vp-c-gray-2);
+			--vp-c-default-3: var(--vp-c-gray-3);
+			--vp-c-default-soft: var(--vp-c-gray-soft);
+			--vp-c-brand-1: var(--vp-c-indigo-1);
+			--vp-c-brand-2: var(--vp-c-indigo-2);
+			--vp-c-brand-3: var(--vp-c-indigo-3);
+			--vp-c-brand-soft: var(--vp-c-indigo-soft);
+			--vp-c-brand: var(--vp-c-brand-1);
+			--vp-c-tip-1: var(--vp-c-brand-1);
+			--vp-c-tip-2: var(--vp-c-brand-2);
+			--vp-c-tip-3: var(--vp-c-brand-3);
+			--vp-c-tip-soft: var(--vp-c-brand-soft);
+			--vp-c-note-1: var(--vp-c-brand-1);
+			--vp-c-note-2: var(--vp-c-brand-2);
+			--vp-c-note-3: var(--vp-c-brand-3);
+			--vp-c-note-soft: var(--vp-c-brand-soft);
+			--vp-c-success-1: var(--vp-c-green-1);
+			--vp-c-success-2: var(--vp-c-green-2);
+			--vp-c-success-3: var(--vp-c-green-3);
+			--vp-c-success-soft: var(--vp-c-green-soft);
+			--vp-c-important-1: var(--vp-c-purple-1);
+			--vp-c-important-2: var(--vp-c-purple-2);
+			--vp-c-important-3: var(--vp-c-purple-3);
+			--vp-c-important-soft: var(--vp-c-purple-soft);
+			--vp-c-warning-1: var(--vp-c-yellow-1);
+			--vp-c-warning-2: var(--vp-c-yellow-2);
+			--vp-c-warning-3: var(--vp-c-yellow-3);
+			--vp-c-warning-soft: var(--vp-c-yellow-soft);
+			--vp-c-danger-1: var(--vp-c-red-1);
+			--vp-c-danger-2: var(--vp-c-red-2);
+			--vp-c-danger-3: var(--vp-c-red-3);
+			--vp-c-danger-soft: var(--vp-c-red-soft);
+			--vp-c-caution-1: var(--vp-c-red-1);
+			--vp-c-caution-2: var(--vp-c-red-2);
+			--vp-c-caution-3: var(--vp-c-red-3);
+			--vp-c-caution-soft: var(--vp-c-red-soft);
+		}
+
+		:root {
+			--vp-c-gray-1: #dddde3;
+			--vp-c-gray-2: #e4e4e9;
+			--vp-c-gray-3: #ebebef;
+			--vp-c-gray-soft: rgba(142, 150, 170, .14);
+			--vp-c-indigo-1: #3451b2;
+			--vp-c-indigo-2: #3a5ccc;
+			--vp-c-indigo-3: #5672cd;
+			--vp-c-indigo-soft: rgba(100, 108, 255, .14);
+			--vp-c-purple-1: #6f42c1;
+			--vp-c-purple-2: #7e4cc9;
+			--vp-c-purple-3: #8e5cd9;
+			--vp-c-purple-soft: rgba(159, 122, 234, .14);
+			--vp-c-green-1: #18794e;
+			--vp-c-green-2: #299764;
+			--vp-c-green-3: #30a46c;
+			--vp-c-green-soft: rgba(16, 185, 129, .14);
+			--vp-c-yellow-1: #915930;
+			--vp-c-yellow-2: #946300;
+			--vp-c-yellow-3: #9f6a00;
+			--vp-c-yellow-soft: rgba(234, 179, 8, .14);
+			--vp-c-red-1: #b8272c;
+			--vp-c-red-2: #d5393e;
+			--vp-c-red-3: #e0575b;
+			--vp-c-red-soft: rgba(244, 63, 94, .14);
+			--vp-c-sponsor: #db2777;
+		}
+
+		.custom-block {
+			line-height: 24px;
+			font-size: var(--vp-custom-block-font-size);
+			color: var(--vp-c-text-2);
+			border: 1px solid #0000;
+			border-radius: 8px;
+			padding: 8px 16px 8px;
+			margin: 16px 0;
+		}
+
+		.custom-block.info {
+			border-color: var(--vp-custom-block-info-border);
+			color: var(--vp-custom-block-info-text);
+			background-color: var(--vp-custom-block-info-bg)
+		}
+
+		.custom-block.info a,
+		.custom-block.info code {
+			color: var(--vp-c-brand-1)
+		}
+
+		.custom-block.info a:hover,
+		.custom-block.info a:hover>code {
+			color: var(--vp-c-brand-2)
+		}
+
+		.custom-block.info code {
+			background-color: var(--vp-custom-block-info-code-bg)
+		}
+
+		.custom-block.note {
+			border-color: var(--vp-custom-block-note-border);
+			color: var(--vp-custom-block-note-text);
+			background-color: var(--vp-custom-block-note-bg)
+		}
+
+		.custom-block.note a,
+		.custom-block.note code {
+			color: var(--vp-c-brand-1)
+		}
+
+		.custom-block.note a:hover,
+		.custom-block.note a:hover>code {
+			color: var(--vp-c-brand-2)
+		}
+
+		.custom-block.note code {
+			background-color: var(--vp-custom-block-note-code-bg)
+		}
+
+		.custom-block.tip {
+			border-color: var(--vp-custom-block-tip-border);
+			color: var(--vp-custom-block-tip-text);
+			background-color: var(--vp-custom-block-tip-bg)
+		}
+
+		.custom-block.tip a,
+		.custom-block.tip code {
+			color: var(--vp-c-tip-1)
+		}
+
+		.custom-block.tip a:hover,
+		.custom-block.tip a:hover>code {
+			color: var(--vp-c-tip-2)
+		}
+
+		.custom-block.tip code {
+			background-color: var(--vp-custom-block-tip-code-bg)
+		}
+
+		.custom-block.important {
+			border-color: var(--vp-custom-block-important-border);
+			color: var(--vp-custom-block-important-text);
+			background-color: var(--vp-custom-block-important-bg)
+		}
+
+		.custom-block.important a,
+		.custom-block.important code {
+			color: var(--vp-c-important-1)
+		}
+
+		.custom-block.important a:hover,
+		.custom-block.important a:hover>code {
+			color: var(--vp-c-important-2)
+		}
+
+		.custom-block.important code {
+			background-color: var(--vp-custom-block-important-code-bg)
+		}
+
+		.custom-block.warning {
+			border-color: var(--vp-custom-block-warning-border);
+			color: var(--vp-custom-block-warning-text);
+			background-color: var(--vp-custom-block-warning-bg)
+		}
+
+		.custom-block.warning a,
+		.custom-block.warning code {
+			color: var(--vp-c-warning-1)
+		}
+
+		.custom-block.warning a:hover,
+		.custom-block.warning a:hover>code {
+			color: var(--vp-c-warning-2)
+		}
+
+		.custom-block.warning code {
+			background-color: var(--vp-custom-block-warning-code-bg)
+		}
+
+		.custom-block.danger {
+			border-color: var(--vp-custom-block-danger-border);
+			color: var(--vp-custom-block-danger-text);
+			background-color: var(--vp-custom-block-danger-bg)
+		}
+
+		.custom-block.danger a,
+		.custom-block.danger code {
+			color: var(--vp-c-danger-1)
+		}
+
+		.custom-block.danger a:hover,
+		.custom-block.danger a:hover>code {
+			color: var(--vp-c-danger-2)
+		}
+
+		.custom-block.danger code {
+			background-color: var(--vp-custom-block-danger-code-bg)
+		}
+
+		.custom-block.caution {
+			border-color: var(--vp-custom-block-caution-border);
+			color: var(--vp-custom-block-caution-text);
+			background-color: var(--vp-custom-block-caution-bg)
+		}
+
+		.custom-block.caution a,
+		.custom-block.caution code {
+			color: var(--vp-c-caution-1)
+		}
+
+		.custom-block.caution a:hover,
+		.custom-block.caution a:hover>code {
+			color: var(--vp-c-caution-2)
+		}
+
+		.custom-block.caution code {
+			background-color: var(--vp-custom-block-caution-code-bg)
+		}
+
+		.custom-block.details {
+			border-color: var(--vp-custom-block-details-border);
+			color: var(--vp-custom-block-details-text);
+			background-color: var(--vp-custom-block-details-bg)
+		}
+
+		.custom-block.details a {
+			color: var(--vp-c-brand-1)
+		}
+
+		.custom-block.details a:hover,
+		.custom-block.details a:hover>code {
+			color: var(--vp-c-brand-2)
+		}
+
+		.custom-block.details code {
+			background-color: var(--vp-custom-block-details-code-bg)
+		}
+
+		.custom-block-title {
+			font-weight: 600
+		}
+
+		.custom-block p+p {
+			margin: 8px 0
+		}
+
+		.custom-block.details summary {
+			cursor: pointer;
+			-webkit-user-select: none;
+			user-select: none;
+			margin: 0 0 8px;
+			font-weight: 700
+		}
+
+		.custom-block.details summary+p {
+			margin: 8px 0
+		}
+
+		:root {
+			--vp-button-brand-border: transparent;
+			--vp-button-brand-text: var(--vp-c-white);
+			--vp-button-brand-bg: var(--vp-c-brand-3);
+			--vp-button-brand-hover-border: transparent;
+			--vp-button-brand-hover-text: var(--vp-c-white);
+			--vp-button-brand-hover-bg: var(--vp-c-brand-2);
+			--vp-button-brand-active-border: transparent;
+			--vp-button-brand-active-text: var(--vp-c-white);
+			--vp-button-brand-active-bg: var(--vp-c-brand-1);
+			--vp-button-alt-border: transparent;
+			--vp-button-alt-text: var(--vp-c-text-1);
+			--vp-button-alt-bg: var(--vp-c-default-3);
+			--vp-button-alt-hover-border: transparent;
+			--vp-button-alt-hover-text: var(--vp-c-text-1);
+			--vp-button-alt-hover-bg: var(--vp-c-default-2);
+			--vp-button-alt-active-border: transparent;
+			--vp-button-alt-active-text: var(--vp-c-text-1);
+			--vp-button-alt-active-bg: var(--vp-c-default-1);
+			--vp-button-sponsor-border: var(--vp-c-text-2);
+			--vp-button-sponsor-text: var(--vp-c-text-2);
+			--vp-button-sponsor-bg: transparent;
+			--vp-button-sponsor-hover-border: var(--vp-c-sponsor);
+			--vp-button-sponsor-hover-text: var(--vp-c-sponsor);
+			--vp-button-sponsor-hover-bg: transparent;
+			--vp-button-sponsor-active-border: var(--vp-c-sponsor);
+			--vp-button-sponsor-active-text: var(--vp-c-sponsor);
+			--vp-button-sponsor-active-bg: transparent;
+			--vp-custom-block-font-size: 14px;
+			--vp-custom-block-code-font-size: 13px;
+			--vp-custom-block-info-border: transparent;
+			--vp-custom-block-info-text: var(--vp-c-text-1);
+			--vp-custom-block-info-bg: var(--vp-c-default-soft);
+			--vp-custom-block-info-code-bg: var(--vp-c-default-soft);
+			--vp-custom-block-note-border: transparent;
+			--vp-custom-block-note-text: var(--vp-c-text-1);
+			--vp-custom-block-note-bg: var(--vp-c-default-soft);
+			--vp-custom-block-note-code-bg: var(--vp-c-default-soft);
+			--vp-custom-block-tip-border: transparent;
+			--vp-custom-block-tip-text: var(--vp-c-text-1);
+			--vp-custom-block-tip-bg: var(--vp-c-tip-soft);
+			--vp-custom-block-tip-code-bg: var(--vp-c-tip-soft);
+			--vp-custom-block-important-border: transparent;
+			--vp-custom-block-important-text: var(--vp-c-text-1);
+			--vp-custom-block-important-bg: var(--vp-c-important-soft);
+			--vp-custom-block-important-code-bg: var(--vp-c-important-soft);
+			--vp-custom-block-warning-border: transparent;
+			--vp-custom-block-warning-text: var(--vp-c-text-1);
+			--vp-custom-block-warning-bg: var(--vp-c-warning-soft);
+			--vp-custom-block-warning-code-bg: var(--vp-c-warning-soft);
+			--vp-custom-block-danger-border: transparent;
+			--vp-custom-block-danger-text: var(--vp-c-text-1);
+			--vp-custom-block-danger-bg: var(--vp-c-danger-soft);
+			--vp-custom-block-danger-code-bg: var(--vp-c-danger-soft);
+			--vp-custom-block-caution-border: transparent;
+			--vp-custom-block-caution-text: var(--vp-c-text-1);
+			--vp-custom-block-caution-bg: var(--vp-c-caution-soft);
+			--vp-custom-block-caution-code-bg: var(--vp-c-caution-soft);
+			--vp-custom-block-details-border: var(--vp-custom-block-info-border);
+			--vp-custom-block-details-text: var(--vp-custom-block-info-text);
+			--vp-custom-block-details-bg: var(--vp-custom-block-info-bg);
+			--vp-custom-block-details-code-bg: var(--vp-custom-block-info-code-bg);
+			--vp-input-border-color: var(--vp-c-border);
+			--vp-input-bg-color: var(--vp-c-bg-alt);
+			--vp-input-switch-bg-color: var(--vp-c-default-soft);
+			--vp-nav-height: 64px;
+			--vp-nav-bg-color: var(--vp-c-bg);
+			--vp-nav-screen-bg-color: var(--vp-c-bg);
+			--vp-nav-logo-height: 24px;
+		}
+
+		pre {
+			white-space: pre !important;
+		}
+
+		pre code {
+			margin: -30px 0px -60px 0px;
+			font-family: 'Consolas' !important;
+			display: block !important;
+			padding: 12px !important;
+			padding-left: 20px !important;
+			background: #6366f10f !important;
+			border-radius: 10px !important;
+			border: 1px solid #6366f130 !important;
+			color: #1e1e1e !important;
+			overflow-x: auto !important;
+			overflow-y: auto !important;
+			line-height: 1.6 !important;
+			font-size: 0.95rem !important;
+		}
+
+		.codecopy-btn {
+			opacity: 0.7 !important;
+			min-height: 1em;
+			outline: 0;
+			vertical-align: baseline;
+			position: absolute;
+			top: 10px !important;
+			right: 25px !important;
+			background: #6366f115;
+			padding: 6px 10px !important;
+			color: rgba(0, 0, 0, 0.6);
+			border: 1px solid rgba(0, 0, 0, 0.1);
+			box-shadow: transparent 0px 0px 0px 1px inset, rgba(34, 36, 38, 0.15) 0px 0px 0px 0px inset;
+			cursor: pointer;
+			z-index: 10;
+			text-transform: none;
+			text-shadow: none;
+			font-weight: 700;
+			line-height: 1em;
+			font-style: normal;
+			text-align: center;
+			text-decoration: none;
+			border-radius: .28571429rem;
+			font-size: 0.8rem !important;
+			display: inline-block !important;
+			padding-block: 1px;
+			padding-inline: 6px;
+			margin: 0 -1.25em 0 0;
+			font-family: 'LXGW Wenkai Screen';
+		}
+
+		.codecopy-btn icon {
+			font-weight: 0.8rem !important;
+		}
+
+		.codecopy-btn:active {
+			background-color: #6366f125;
+			color: rgba(0, 0, 0, 0.9);
+		}
+
+		.codecopy-btn:hover {
+			background: #6366f140;
+			transform: translateY(-1px);
+			background-color: rgb(202, 203, 205);
+			box-shadow: transparent 0px 0px 0px 1px inset, rgba(34, 36, 38, 0.15) 0px 0px 0px 0px inset;
+			color: rgba(0, 0, 0, 0.8);
+		}
+
+		.codecopy-btn:focus {
+			background-color: #6366f125;
+			color: rgba(0, 0, 0, 0.8);
+		}
+
+		.article-content table {
+			width: 100%;
+			border-collapse: collapse;
+			margin: 24px 0;
+			border-radius: var(--border-radius-sm);
+			overflow: hidden;
+			box-shadow: var(--shadow);
+		}
+
+		.article-content th,
+		.article-content td {
+			padding: 16px;
+			text-align: left;
+			border-bottom: 1px solid var(--gray-light);
+		}
+
+		.article-content th {
+			background: var(--gray-lighter);
+			font-weight: 600;
+			color: var(--darker);
+		}
+
+		.article-content tr:hover {
+			background: rgba(124, 143, 206, 0.03);
+		}
+
+		.article-content img {
+			max-width: 100%;
+			height: auto;
+			border-radius: 8px;
+			display: block;
+			margin: 25px auto;
+			box-shadow: var(--shadow);
+			transition: var(--transition);
+		}
+
+		.article-content img:hover {
+			transform: scale(1.02);
+		}
+
+		.floating-action-btn {
+			position: fixed;
+			bottom: 32px;
+			right: 32px;
+			width: 56px;
+			height: 56px;
+			border-radius: 50%;
+			background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+			color: white;
+			border: none;
+			cursor: pointer;
+			box-shadow: var(--shadow-lg);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 1.3rem;
+			transition: var(--transition-smooth);
+			z-index: 100;
+			border: 2px solid rgba(255, 255, 255, 0.2);
+		}
+
+		.floating-action-btn:hover {
+			transform: scale(1.1) rotate(90deg);
+			box-shadow: var(--shadow-lg), 0 0 20px rgba(124, 143, 206, 0.3);
+		}
+
+		.loader {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: var(--lighter);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 9999;
+			transition: opacity 0.6s ease-out;
+		}
+
+		.loader-content {
+			text-align: center;
+		}
+
+		.loader-spinner {
+			width: 90px;
+			height: 90px;
+			border: 3px solid var(--gray-lighter);
+			border-top-color: var(--primary);
+			border-radius: 50%;
+			animation: spin 1s linear infinite;
+			margin-bottom: 24px;
+		}
+
+		.loader-text {
+			font-size: 1.5rem;
+			color: var(--gray);
+			font-weight: 500;
+		}
+
+		.empty-state {
+			text-align: center;
+			padding: 80px 20px;
+			background: var(--lighter);
+			border-radius: var(--border-radius);
+			border: 1px solid var(--gray-light);
+			margin: 40px 0;
+		}
+
+		.empty-state i {
+			font-size: 4rem;
+			color: var(--gray-light);
+			margin-bottom: 24px;
+		}
+
+		.empty-state h3 {
+			font-size: 1.8rem;
+			color: var(--darker);
+			margin-bottom: 16px;
+			font-weight: 600;
+		}
+
+		.empty-state p {
+			color: var(--gray);
+			max-width: 400px;
+			margin: 0 auto 32px;
+			font-size: 1.1rem;
+		}
+
+		.modal-overlay {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: rgba(0, 0, 0, 0.4);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 2000;
+			backdrop-filter: blur(4px);
+			animation: fadeIn 0.3s ease-out;
+		}
+
+		.modal-container {
+			background: var(--lighter);
+			border-radius: var(--border-radius);
+			padding: 40px;
+			width: 90%;
+			max-width: 500px;
+			box-shadow: var(--shadow-lg);
+			border: 1px solid var(--gray-light);
+			animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+
+		.modal-title {
+			text-align: center;
+			margin-bottom: 28px;
+			color: var(--darker);
+			font-size: 1.5rem;
+			font-weight: 600;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 12px;
+		}
+
+		.user-badge {
+			background: linear-gradient(135deg, var(--success) 0%, #A5D6B5 100%);
+			color: white;
+			padding: 8px 20px;
+			border-radius: 20px;
+			font-weight: 500;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			box-shadow: var(--shadow);
+			border: 1px solid rgba(255, 255, 255, 0.2);
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes slideUp {
+			from {
+				opacity: 0;
+				transform: translateY(30px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes spin {
+			to {
+				transform: rotate(360deg);
+			}
+		}
+
+		@keyframes modalSlideIn {
+			from {
+				opacity: 0;
+				transform: translateY(-20px) scale(0.95);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0) scale(1);
+			}
+		}
+
+		@media (max-width: 768px) {
+			#content {
+				padding: 16px;
+				margin-top: 70px;
+			}
+
+			.article-header {
+				padding: 28px 24px;
+			}
+
+			.article-header h1 {
+				font-size: 2.2rem;
+			}
+
+			.article-card {
+				padding: 24px;
+			}
+
+			.article-title {
+				font-size: 1.4rem;
+			}
+
+			.action-buttons {
+				flex-direction: column;
+			}
+
+			.btn {
+				width: 100%;
+				justify-content: center;
+			}
+
+			.floating-action-btn {
+				bottom: 24px;
+				right: 24px;
+				width: 50px;
+				height: 50px;
+			}
+
+			.stats-card {
+				grid-template-columns: 1fr;
+			}
+
+			.modal-container {
+				padding: 28px 24px;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.nav-content {
+				flex-direction: column;
+				gap: 16px;
+			}
+
+			.nav-links {
+				width: 100%;
+				justify-content: center;
+			}
+
+			.article-header h1 {
+				font-size: 1.8rem;
+			}
+
+			.article-meta {
+				flex-direction: column;
+				gap: 8px;
+			}
+		}
+
+		::-webkit-scrollbar {
+			width: 10px;
+		}
+
+		::-webkit-scrollbar-track {
+			background: var(--gray-lighter);
+			border-radius: 10px;
+		}
+
+		::-webkit-scrollbar-thumb {
+			background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+			border-radius: 10px;
+		}
+
+		::-webkit-scrollbar-thumb:hover {
+			background: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary) 100%);
+		}
+
+		::selection {
+			background-color: rgba(124, 143, 206, 0.3);
+			color: var(--darker);
+		}
+	</style>
+</head>
+
+<body>
+	<nav id="nav" class="nav">
+		<div class="nav-content">
+			<a href="/" class="logo" onclick="router.navigate('/'); return false;">
+				<i class="fas fa-feather-alt"></i>
+				<span>Banglee Blog</span>
+			</a>
+			<div class="nav-links" id="nav-links"></div>
+		</div>
+	</nav>
+	<div class="loader" id="loader">
+		<div class="loader-content">
+			<div class="loader-spinner"></div>
+			<div class="loader-text">Loading.</div>
+		</div>
+	</div>
+	<main id="content"></main>
+	<button class="floating-action-btn" id="fab" style="display: none;">
+		<i class="fas fa-plus"></i>
+	</button>
+	<script src="https://cdn.jsdmirror.com/npm/@supabase/supabase-js@2"></script>
+	<script src="https://cdn.jsdmirror.com/npm/marked@4.3.0/marked.min.js"></script>
+	<script src="https://cdn.jsdmirror.com/npm/katex@0.16.9/dist/katex.min.js"></script>
+	<script src="https://cdn.jsdmirror.com/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+	<script>
+		const supabaseUrl = 'https://nyhchryguyjykujubqnh.supabase.co'
+		const supabaseKey = 'sb_publishable_0owrykQHTggxWzSq4uJppg_kHgSEuWC'
+		const Supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+		let currentUser = null;
+		let articleToDelete = null;
+		async function checkAuth() {
+			const savedToken = localStorage.getItem('supabase.auth.token');
+			const savedUser = localStorage.getItem('supabase.auth.user');
+			if (savedToken && savedUser) {
+				currentUser = JSON.parse(savedUser);
+			}
+			const { data: { session }, error } = await Supabase.auth.getSession();
+			if (error) {
+				console.error('认证检查错误:', error);
+			} else if (session) {
+				currentUser = session.user;
+				localStorage.setItem('supabase.auth.token', JSON.stringify({
+					access_token: session.access_token,
+					refresh_token: session.refresh_token,
+					expires_at: session.expires_at
+				}));
+				localStorage.setItem('supabase.auth.user', JSON.stringify(session.user));
+			} else {
+				localStorage.removeItem('supabase.auth.token');
+				localStorage.removeItem('supabase.auth.user');
+				currentUser = null;
+			}
+			return session;
+		}
+		function showLoginPopup() {
+			const overlay = document.createElement('div');
+			overlay.className = 'modal-overlay';
+			overlay.innerHTML = `
+                <div class="modal-container">
+                    <h2 class="modal-title">
+                        <i class="fas fa-user-lock"></i> 管理员登录
+                    </h2>
+                    <input type="email" id="login-email" class="form-input" 
+                           placeholder="邮箱" value="zhangyimin12345@yeah.net">
+                    <input type="password" id="login-password" class="form-input" 
+                           placeholder="密码" style="margin-top: 16px;">
+                    <div style="margin-top: 28px; display: flex; gap: 12px;">
+                        <button id="login-submit" class="btn btn-primary" style="flex: 1;">
+                            <i class="fas fa-sign-in-alt"></i> 登录
+                        </button>
+                        <button id="login-cancel" class="btn btn-light" style="flex: 1;">
+                            <i class="fas fa-times"></i> 取消
+                        </button>
+                    </div>
+                </div>
+            `;
+			document.body.appendChild(overlay);
+			setTimeout(() => {
+				document.getElementById('login-password').focus();
+			}, 100);
+			document.getElementById('login-submit').addEventListener('click', async () => {
+				const email = document.getElementById('login-email').value;
+				const password = document.getElementById('login-password').value;
+				const btn = document.getElementById('login-submit');
+				btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 登录中...';
+				btn.disabled = true;
+				try {
+					const { data, error } = await Supabase.auth.signInWithPassword({
+						email: email,
+						password: password
+					});
+					if (error) throw error;
+					if (data.session) {
+						localStorage.setItem('supabase.auth.token', JSON.stringify({
+							access_token: data.session.access_token,
+							refresh_token: data.session.refresh_token,
+							expires_at: data.session.expires_at
+						}));
+						localStorage.setItem('supabase.auth.user', JSON.stringify(data.user));
+					}
+					btn.innerHTML = '<i class="fas fa-check"></i> 登录成功！';
+					setTimeout(() => {
+						overlay.remove();
+						location.reload();
+					}, 1000);
+				} catch (error) {
+					btn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> 登录失败';
+					btn.disabled = false;
+					setTimeout(() => {
+						btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> 登录';
+						btn.disabled = false;
+					}, 2000);
+					showToast('登录失败: ' + error.message, 'error');
+				}
+			});
+			document.getElementById('login-cancel').addEventListener('click', () => {
+				overlay.remove();
+			});
+			document.getElementById('login-password').addEventListener('keypress', (e) => {
+				if (e.key === 'Enter') {
+					document.getElementById('login-submit').click();
+				}
+			});
+			overlay.addEventListener('click', (e) => {
+				if (e.target === overlay) {
+					overlay.remove();
+				}
+			});
+		}
+		async function logout() {
+			if (!confirm('确定要退出登录吗？')) return;
+			try {
+				const { error } = await Supabase.auth.signOut();
+				if (error) throw error;
+				localStorage.removeItem('supabase.auth.token');
+				localStorage.removeItem('supabase.auth.user');
+				currentUser = null;
+				showToast('已成功登出', 'success');
+				setTimeout(() => location.reload(), 1000);
+			} catch (error) {
+				showToast('登出失败: ' + error.message, 'error');
+			}
+		}
+		function showToast(message, type = 'info') {
+			const toast = document.createElement('div');
+			toast.className = `toast toast-${type}`;
+			toast.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            `;
+			if (!document.querySelector('.toast-styles')) {
+				const style = document.createElement('style');
+				style.className = 'toast-styles';
+				style.textContent = `
+                    .toast {
+                        position: fixed;
+                        top: 24px;
+                        right: 24px;
+                        padding: 16px 24px;
+                        background: white;
+                        border-radius: var(--border-radius-sm);
+                        box-shadow: var(--shadow-lg);
+                        display: flex;
+                        align-items: center;
+                        gap: 12px;
+                        z-index: 3000;
+                        animation: slideIn 0.3s ease-out;
+                        border: 1px solid var(--gray-light);
+                    }
+                    .toast-success {
+                        border-left: 4px solid var(--success);
+                    }
+                    .toast-error {
+                        border-left: 4px solid var(--danger);
+                    }
+                    .toast-info {
+                        border-left: 4px solid var(--primary);
+                    }
+                    @keyframes slideIn {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                `;
+				document.head.appendChild(style);
+			}
+			document.body.appendChild(toast);
+			setTimeout(() => {
+				toast.style.animation = 'slideIn 0.3s ease-out reverse';
+				setTimeout(() => toast.remove(), 300);
+			}, 3000);
+		}
+		function showDeleteConfirm(article) {
+			articleToDelete = article;
+			const overlay = document.createElement('div');
+			overlay.className = 'modal-overlay';
+			overlay.innerHTML = `
+                <div class="modal-container">
+                    <h2 class="modal-title" style="color: var(--danger);">
+                        <i class="fas fa-exclamation-triangle"></i> 确认删除
+                    </h2>
+                    <div style="text-align: center; margin-bottom: 28px;">
+                        <p style="margin-bottom: 12px; color: var(--dark);">确定要删除文章</p>
+                        <p style="font-weight: 600; color: var(--darker); font-size: 1.2rem; margin: 8px 0;">"${escapeHtml(article.title)}"</p>
+                        <p style="font-size: 0.9rem; color: var(--gray);">此操作不可恢复！</p>
+                    </div>
+                    <div style="display: flex; gap: 12px;">
+                        <button id="delete-confirm-btn" class="btn btn-danger" style="flex: 1;">
+                            <i class="fas fa-trash"></i> 确认删除
+                        </button>
+                        <button id="delete-cancel-btn" class="btn btn-light" style="flex: 1;">
+                            <i class="fas fa-times"></i> 取消
+                        </button>
+                    </div>
+                </div>
+            `;
+			document.body.appendChild(overlay);
+			document.getElementById('delete-confirm-btn').addEventListener('click', async () => {
+				const btn = document.getElementById('delete-confirm-btn');
+				btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 删除中...';
+				btn.disabled = true;
+				await deleteArticle(article.id);
+				overlay.remove();
+			});
+			document.getElementById('delete-cancel-btn').addEventListener('click', () => {
+				overlay.remove();
+			});
+			overlay.addEventListener('click', (e) => {
+				if (e.target === overlay) overlay.remove();
+			});
+		}
+		async function deleteArticle(articleId) {
+			if (!currentUser) {
+				showToast('请先登录！', 'error');
+				showLoginPopup();
+				return;
+			}
+			try {
+				const { error } = await Supabase
+					.from('article')
+					.delete()
+					.eq('id', articleId);
+				if (error) throw error;
+				showToast('文章删除成功！', 'success');
+				router.handleRoute();
+			} catch (error) {
+				showToast('删除失败: ' + error.message, 'error');
+			}
+		}
+		const router = {
+			routes: {
+				'/article': showArticleList,
+				'/article/new': showNewArticle,
+				'/article/:id': showArticleDetail,
+				'/article/:id/edit': showEditArticle
+			},
+			async init() {
+				window.addEventListener('popstate', this.handleRoute.bind(this));
+				await this.handleRoute();
+				this.updateNavLinks();
+			},
+			async handleRoute() {
+				let path = window.location.pathname;
+				let params = {};
+				if (path.endsWith('/')) path = path.slice(0, -1);
+				for (const route in this.routes) {
+					const routePattern = route.replace(/:\w+/g, '([^/]+)');
+					const regex = new RegExp(`^${routePattern}$`);
+					const match = path.match(regex);
+					if (match) {
+						const paramNames = [...route.matchAll(/:(\w+)/g)].map(m => m[1]);
+						paramNames.forEach((name, index) => {
+							params[name] = match[index + 1];
+						});
+						await this.routes[route](params);
+						return;
+					}
+				}
+				await showArticleList();
+			},
+			navigate(path) {
+				const content = document.getElementById('content');
+				content.style.opacity = '0';
+				content.style.transform = 'translateY(20px)';
+				content.style.transition = 'all 0.3s ease-out';
+				setTimeout(() => {
+					history.pushState(null, '', path);
+					this.handleRoute();
+					this.updateNavLinks();
+				}, 200);
+			},
+			updateNavLinks() {
+				const navLinks = document.getElementById('nav-links');
+				if (!navLinks) return;
+				navLinks.innerHTML = `
+                    ${currentUser ? `
+                        <div class="user-badge">
+                            <i class="fas fa-user-shield"></i>
+                            <span>管理员</span>
+                        </div>
+                        <button class="btn btn-danger" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> 登出
+                        </button>
+                    ` : `
+                        <button class="btn btn-success" onclick="showLoginPopup()">
+                            <i class="fas fa-sign-in-alt"></i> 管理员登录
+                        </button>
+                    `}
+                `;
+			}
+		};
+		async function showArticleList() {
+			document.title = '文章列表 - Banglee Blog';
+			const content = document.getElementById('content');
+			content.innerHTML = `
+                <div class="article-header">
+                    <h1><i class="fas fa-feather-alt"></i> Banglee Blog</h1>
+                    <p>记录生活点滴，分享知识见解</p>
+                </div>
+                <div class="stats-card">
+                    <div class="stat-item">
+                        <div class="stat-number" id="total-articles">0</div>
+                        <div class="stat-label">总文章数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="recent-articles">0</div>
+                        <div class="stat-label">最近更新</div>
+                    </div>
+                </div>
+                <div id="articles-container" class="loading">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary); margin-bottom: 16px;"></i>
+                    <p style="color: var(--gray);">正在加载文章...</p>
+                </div>
+            `;
+			const fab = document.getElementById('fab');
+			fab.style.display = 'block';
+			fab.innerHTML = currentUser ? '<i class="fas fa-plus"></i>' : '<i class="fas fa-sign-in-alt"></i>';
+			fab.onclick = () => currentUser ? router.navigate('/article/new') : showLoginPopup();
+			try {
+				const { data: articles, error } = await Supabase
+					.from('article')
+					.select('id, title, created_at, updated_at, md, tag')
+					.order('created_at', { ascending: false });
+				if (error) throw error;
+				const totalArticles = articles?.length || 0;
+				const recentCount = articles?.filter(article => {
+					const date = new Date(article.updated_at || article.created_at);
+					return (Date.now() - date.getTime()) / (1000 * 3600 * 24) < 7;
+				}).length || 0;
+				document.getElementById('total-articles').textContent = totalArticles;
+				document.getElementById('recent-articles').textContent = recentCount;
+				if (!articles || articles.length === 0) {
+					content.innerHTML = `
+                        <div class="article-header">
+                            <h1><i class="fas fa-newspaper"></i> 文章列表</h1>
+                            ${currentUser ?
+							'<button class="btn btn-success" onclick="router.navigate(\'/article/new\')" style="margin-top: 20px;">' +
+							'<i class="fas fa-plus"></i> 新建文章' +
+							'</button>' :
+							'<button class="btn btn-success" onclick="showLoginPopup()" style="margin-top: 20px;">' +
+							'<i class="fas fa-sign-in-alt"></i> 管理员登录' +
+							'</button>'}
+                        </div>
+                        <div class="empty-state">
+                            <i class="fas fa-newspaper"></i>
+                            <h3>暂无文章</h3>
+                            <p>${currentUser ? '开始创建第一篇文章吧！' : '管理员登录后可以创建文章'}</p>
+                            ${currentUser ?
+							'<button class="btn btn-success" onclick="router.navigate(\'/article/new\')">' +
+							'<i class="fas fa-plus"></i> 创建第一篇文章' +
+							'</button>' : ''}
+                        </div>
+                    `;
+					return;
+				}
+				const articlesHTML = articles.map(article => `
+                    <div class="article-card">
+                        <h2 class="article-title">
+                            <i class="fas fa-file-alt"></i>
+                            ${escapeHtml(article.title || '无标题')}
+                        </h2>
+                        <div class="article-meta">
+                            <span><i class="far fa-calendar"></i> ${formatDate(article.created_at)}</span>
+                            ${article.updated_at ?
+						`<span><i class="fas fa-sync-alt"></i> ${formatDate(article.updated_at)}</span>` : ''}
+                            <span><i class="far fa-clock"></i> 阅读时间：${calculateReadTime(article.md || '')} 分钟</span>
+                        </div>
+                        ${parseTags(article.tag).length > 0 ? `
+                            <div class="tags-container">
+                                ${parseTags(article.tag).map(tag =>
+							`<span class="tag"><i class="fas fa-tag"></i> ${escapeHtml(tag)}</span>`
+						).join('')}
+                            </div>
+                        ` : ''}
+                        <div class="article-content-preview">${escapeHtml(truncateMarkdown(article.md || '无内容'))}</div>
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" onclick="router.navigate('/article/${article.id}')">
+                                <i class="fas fa-eye"></i> 阅读全文
+                            </button>
+                            ${currentUser ? `
+                                <button class="btn btn-success" onclick="router.navigate('/article/${article.id}/edit')">
+                                    <i class="fas fa-edit"></i> 编辑
+                                </button>
+                                <button class="btn btn-danger" onclick="showDeleteConfirm(${JSON.stringify({
+							id: article.id,
+							title: article.title
+						}).replace(/"/g, '&quot;')})">
+                                    <i class="fas fa-trash"></i> 删除
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                `).join('');
+				document.getElementById('articles-container').outerHTML = `
+                    <div id="articles-container">
+                        ${articlesHTML}
+                    </div>
+                `;
+				content.style.opacity = '1';
+				content.style.transform = 'translateY(0)';
+			} catch (error) {
+				content.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>加载失败</h3>
+                        <p>${error.message}</p>
+                        <button class="btn btn-primary" onclick="showArticleList()">
+                            <i class="fas fa-redo"></i> 重试
+                        </button>
+                    </div>
+                `;
+			}
+		}
+		async function showArticleDetail(params) {
+			document.title = '文章详情 - Banglee Blog';
+			const content = document.getElementById('content');
+			content.innerHTML = `
+                <div class="loading" style="padding: 80px 20px; text-align: center;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary); margin-bottom: 16px;"></i>
+                    <p style="color: var(--gray);">正在加载文章内容...</p>
+                </div>
+            `;
+			document.getElementById('fab').style.display = 'none';
+			try {
+				const { data: article, error } = await Supabase
+					.from('article')
+					.select('id, title, created_at, updated_at, md, tag')
+					.eq('id', params.id)
+					.single();
+				if (error) throw error;
+				const tags = parseTags(article.tag);
+				content.innerHTML = `
+                    <div class="article-header">
+                        <h1><i class="fas fa-file-alt"></i> ${escapeHtml(article.title)}</h1>
+                        <div class="article-meta" style="margin-top: 16px;">
+                            <span><i class="far fa-calendar"></i> 创建：${formatDate(article.created_at)}</span>
+                            ${article.updated_at ? `<span><i class="fas fa-sync-alt"></i> 更新：${formatDate(article.updated_at)}</span>` : ''}
+                            <span><i class="far fa-clock"></i> 阅读时间：${calculateReadTime(article.md || '')} 分钟</span>
+                        </div>
+                        ${tags.length > 0 ? `
+                            <div class="tags-container" style="margin-top: 20px;">
+                                ${tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                    <div id="article-content-container" class="article-content" style="background: white; padding: 40px; border-radius: var(--border-radius); border: 1px solid var(--gray-light);">
+                    </div>
+                    <div class="action-buttons" style="margin-top: 20px;">
+                        <button class="btn btn-primary" onclick="router.navigate('/article')">
+                            <i class="fas fa-arrow-left"></i> 返回列表
+                        </button>
+                        ${currentUser ? `
+                            <button class="btn btn-success" onclick="router.navigate('/article/${article.id}/edit')">
+                                <i class="fas fa-edit"></i> 编辑文章
+                            </button>
+                            <button class="btn btn-danger" onclick="showDeleteConfirm(${JSON.stringify({
+					id: article.id,
+					title: article.title
+				}).replace(/"/g, '&quot;')})">
+                                <i class="fas fa-trash"></i> 删除文章
+                            </button>
+                        ` : ''}
+                    </div>
+                `;
+				renderMarkdownAndLaTeX(article.md || '', 'article-content-container');
+				content.style.opacity = '1';
+				content.style.transform = 'translateY(0)';
+			} catch (error) {
+				content.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>文章加载失败</h3>
+                        <p>${error.message}</p>
+                        <button class="btn btn-primary" onclick="router.navigate('/article')">
+                            <i class="fas fa-arrow-left"></i> 返回列表
+                        </button>
+                    </div>
+                `;
+			}
+		}
+		function showNewArticle() {
+			if (!currentUser) {
+				showToast('请先登录！', 'error');
+				showLoginPopup();
+				return;
+			}
+			document.title = '新建文章 - Banglee Blog';
+			const content = document.getElementById('content');
+			content.innerHTML = `
+                <div class="article-header">
+                    <h1><i class="fas fa-plus-circle"></i> 新建文章</h1>
+                    <p style="margin-top: 12px;">支持 Markdown 和 LaTeX 语法</p>
+                </div>
+                <div class="article-card" style="margin-bottom: 32px;">
+                    <div class="form-group">
+                        <label class="form-label"><i class="fas fa-heading"></i> 标题</label>
+                        <input type="text" id="article-title" class="form-input" placeholder="请输入文章标题">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label"><i class="fas fa-tags"></i> 标签</label>
+                        <input type="text" id="article-tag" class="form-input" placeholder="多个标签用逗号分隔">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label"><i class="fas fa-file-alt"></i> 内容</label>
+                        <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
+                            <button class="btn btn-light" onclick="insertText('## ', '')" style="font-size: 0.85rem; padding: 8px 12px;">
+                                <i class="fas fa-heading"></i> 标题
+                            </button>
+                            <button class="btn btn-light" onclick="insertText('**', '**')" style="font-size: 0.85rem; padding: 8px 12px;">
+                                <i class="fas fa-bold"></i> 粗体
+                            </button>
+                            <button class="btn btn-light" onclick="insertText('*', '*')" style="font-size: 0.85rem; padding: 8px 12px;">
+                                <i class="fas fa-italic"></i> 斜体
+                            </button>
+                            <button class="btn btn-light" onclick="insertText('[链接文字](', 'url)')" style="font-size: 0.85rem; padding: 8px 12px;">
+                                <i class="fas fa-link"></i> 链接
+                            </button>
+                            <button class="btn btn-light" onclick="insertText('![描述](', 'image-url)')" style="font-size: 0.85rem; padding: 8px 12px;">
+                                <i class="fas fa-image"></i> 图片
+                            </button>
+                            <button class="btn btn-light" onclick="insertText('\`\`\`\\n', '\\n\`\`\`')" style="font-size: 0.85rem; padding: 8px 12px;">
+                                <i class="fas fa-code"></i> 代码块
+                            </button>
+                        </div>
+                        <textarea id="article-md" class="form-textarea" placeholder="请输入文章内容（支持Markdown和LaTeX）"></textarea>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-success" onclick="saveArticle()">
+                            <i class="fas fa-save"></i> 保存文章
+                        </button>
+                        <button class="btn btn-primary" onclick="previewArticle()">
+                            <i class="fas fa-eye"></i> 预览
+                        </button>
+                        <button class="btn btn-light" onclick="router.navigate('/article')">
+                            <i class="fas fa-times"></i> 取消
+                        </button>
+                    </div>
+                </div>
+            `;
+			document.getElementById('fab').style.display = 'none';
+			content.style.opacity = '1';
+			content.style.transform = 'translateY(0)';
+		}
+		async function showEditArticle(params) {
+			if (!currentUser) {
+				showToast('请先登录！', 'error');
+				showLoginPopup();
+				return;
+			}
+			document.title = '编辑文章 - Banglee Blog';
+			const content = document.getElementById('content');
+			content.innerHTML = `
+                <div class="loading" style="padding: 80px 20px; text-align: center;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary); margin-bottom: 16px;"></i>
+                    <p style="color: var(--gray);">正在加载文章...</p>
+                </div>
+            `;
+			document.getElementById('fab').style.display = 'none';
+			try {
+				const { data: article, error } = await Supabase
+					.from('article')
+					.select('id, title, md, tag')
+					.eq('id', params.id)
+					.single();
+				if (error) throw error;
+				content.innerHTML = `
+                    <div class="article-header">
+                        <h1><i class="fas fa-edit"></i> 编辑文章</h1>
+                        <p style="margin-top: 12px;">编辑 ID: ${article.id}</p>
+                    </div>
+                    <div class="article-card">
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-heading"></i> 标题</label>
+                            <input type="text" id="article-title" class="form-input" value="${escapeHtml(article.title)}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-tags"></i> 标签</label>
+                            <input type="text" id="article-tag" class="form-input" value="${escapeHtml(article.tag || '')}" placeholder="多个标签用逗号分隔">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-file-alt"></i> 内容</label>
+                            <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
+                                <button class="btn btn-light" onclick="insertText('## ', '')" style="font-size: 0.85rem; padding: 8px 12px;">
+                                    <i class="fas fa-heading"></i> 标题
+                                </button>
+                                <button class="btn btn-light" onclick="insertText('**', '**')" style="font-size: 0.85rem; padding: 8px 12px;">
+                                    <i class="fas fa-bold"></i> 粗体
+                                </button>
+                                <button class="btn btn-light" onclick="insertText('*', '*')" style="font-size: 0.85rem; padding: 8px 12px;">
+                                    <i class="fas fa-italic"></i> 斜体
+                                </button>
+                                <button class="btn btn-light" onclick="insertText('[链接文字](', 'url)')" style="font-size: 0.85rem; padding: 8px 12px;">
+                                    <i class="fas fa-link"></i> 链接
+                                </button>
+                                <button class="btn btn-light" onclick="insertText('![描述](', 'image-url)')" style="font-size: 0.85rem; padding: 8px 12px;">
+                                    <i class="fas fa-image"></i> 图片
+                                </button>
+                                <button class="btn btn-light" onclick="insertText('\`\`\`\\n', '\\n\`\`\`')" style="font-size: 0.85rem; padding: 8px 12px;">
+                                    <i class="fas fa-code"></i> 代码块
+                                </button>
+                            </div>
+                            <textarea id="article-md" class="form-textarea">${escapeHtml(article.md || '')}</textarea>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn btn-success" onclick="updateArticle('${article.id}')">
+                                <i class="fas fa-save"></i> 更新文章
+                            </button>
+                            <button class="btn btn-primary" onclick="previewArticle()">
+                                <i class="fas fa-eye"></i> 预览
+                            </button>
+                            <button class="btn btn-danger" onclick="showDeleteConfirm(${JSON.stringify({
+					id: article.id,
+					title: article.title
+				}).replace(/"/g, '&quot;')})">
+                                <i class="fas fa-trash"></i> 删除
+                            </button>
+                            <button class="btn btn-light" onclick="router.navigate('/article/${article.id}')">
+                                <i class="fas fa-times"></i> 取消
+                            </button>
+                        </div>
+                    </div>
+                `;
+				content.style.opacity = '1';
+				content.style.transform = 'translateY(0)';
+			} catch (error) {
+				content.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>加载失败</h3>
+                        <p>${error.message}</p>
+                        <button class="btn btn-primary" onclick="router.navigate('/article')">
+                            <i class="fas fa-arrow-left"></i> 返回列表
+                        </button>
+                    </div>
+                `;
+			}
+		}
+		async function saveArticle() {
+			if (!currentUser) {
+				showToast('请先登录！', 'error');
+				showLoginPopup();
+				return;
+			}
+			const title = document.getElementById('article-title').value.trim();
+			const tag = document.getElementById('article-tag').value.trim();
+			const md = document.getElementById('article-md').value.trim();
+			if (!title) {
+				showToast('请输入文章标题', 'error');
+				return;
+			}
+			if (!md) {
+				showToast('请输入文章内容', 'error');
+				return;
+			}
+			const articleId = generateId();
+			try {
+				const btn = document.querySelector('button[onclick="saveArticle()"]');
+				const originalHtml = btn.innerHTML;
+				btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 保存中...';
+				btn.disabled = true;
+				const { error } = await Supabase
+					.from('article')
+					.insert({
+						id: articleId,
+						title: title,
+						tag: tag,
+						md: md,
+						created_at: new Date().toISOString()
+					});
+				if (error) throw error;
+				showToast('文章创建成功！', 'success');
+				btn.innerHTML = originalHtml;
+				btn.disabled = false;
+				setTimeout(() => router.navigate(`/article/${articleId}`), 1500);
+			} catch (error) {
+				showToast('保存失败: ' + error.message, 'error');
+				const btn = document.querySelector('button[onclick="saveArticle()"]');
+				btn.innerHTML = '<i class="fas fa-save"></i> 保存文章';
+				btn.disabled = false;
+			}
+		}
+		async function updateArticle(articleId) {
+			if (!currentUser) {
+				showToast('请先登录！', 'error');
+				showLoginPopup();
+				return;
+			}
+			const title = document.getElementById('article-title').value.trim();
+			const tag = document.getElementById('article-tag').value.trim();
+			const md = document.getElementById('article-md').value.trim();
+			if (!title) {
+				showToast('请输入文章标题', 'error');
+				return;
+			}
+			if (!md) {
+				showToast('请输入文章内容', 'error');
+				return;
+			}
+			try {
+				const btn = document.querySelector(`button[onclick="updateArticle('${articleId}')"]`);
+				const originalHtml = btn.innerHTML;
+				btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 更新中...';
+				btn.disabled = true;
+				const { error } = await Supabase
+					.from('article')
+					.update({
+						title: title,
+						tag: tag,
+						md: md,
+						updated_at: new Date().toISOString()
+					})
+					.eq('id', articleId);
+				if (error) throw error;
+				showToast('文章更新成功！', 'success');
+				btn.innerHTML = originalHtml;
+				btn.disabled = false;
+				setTimeout(() => router.navigate(`/article/${articleId}`), 1500);
+			} catch (error) {
+				showToast('更新失败: ' + error.message, 'error');
+				const btn = document.querySelector(`button[onclick="updateArticle('${articleId}')"]`);
+				btn.innerHTML = '<i class="fas fa-save"></i> 更新文章';
+				btn.disabled = false;
+			}
+		}
+		function previewArticle() {
+			const title = document.getElementById('article-title').value.trim();
+			const tag = document.getElementById('article-tag').value.trim();
+			const md = document.getElementById('article-md').value.trim();
+			if (!title) {
+				showToast('请输入文章标题', 'error');
+				return;
+			}
+			if (!md) {
+				showToast('请输入文章内容', 'error');
+				return;
+			}
+			const overlay = document.createElement('div');
+			overlay.className = 'modal-overlay';
+			overlay.innerHTML = `
+                <div class="modal-container" style="max-width: 800px; max-height: 90vh; overflow-y: auto;">
+                    <h2 class="modal-title">
+                        <i class="fas fa-eye"></i> 文章预览
+                    </h2>
+                    <div style="margin-bottom: 28px;">
+                        <h3 style="color: var(--darker); margin-bottom: 12px; font-size: 1.5rem;">${escapeHtml(title)}</h3>
+                        ${tag ? `
+                            <div class="tags-container">
+                                ${parseTags(tag).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                    <div id="preview-content" class="article-content" style="padding: 24px; background: var(--gray-lighter); border-radius: var(--border-radius-sm);">
+                    </div>
+                    <div style="margin-top: 32px; text-align: center;">
+                        <button id="preview-close" class="btn btn-primary">
+                            <i class="fas fa-times"></i> 关闭预览
+                        </button>
+                    </div>
+                </div>
+            `;
+			document.body.appendChild(overlay);
+			renderMarkdownAndLaTeX(md, 'preview-content');
+			document.getElementById('preview-close').addEventListener('click', () => overlay.remove());
+			overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
+		}
+		function insertText(before, after) {
+			const textarea = document.getElementById('article-md');
+			if (!textarea) return;
+			const start = textarea.selectionStart;
+			const end = textarea.selectionEnd;
+			const selectedText = textarea.value.substring(start, end);
+			const newText = before + selectedText + after;
+			textarea.value = textarea.value.substring(0, start) + newText + textarea.value.substring(end);
+			textarea.focus();
+			textarea.selectionStart = start + before.length;
+			textarea.selectionEnd = end + before.length;
+		}
+		function escapeHtml(str) {
+			return str.replace(/&/g, '&amp;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;')
+				.replace(/"/g, '&quot;')
+				.replace(/'/g, '&#039;')
+				.replace(/\t/g, '    ');
+		}
+		function generateId() {
+			const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+			return Array.from({ length: 8 }, () => chars.charAt(Math.floor(Math.random() * chars.length))).join('');
+		}
+		function formatDate(dateString) {
+			if (!dateString) return '未知时间';
+			try {
+				const date = new Date(dateString);
+				const now = new Date();
+				const diff = now - date;
+				const diffDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+				if (diffDays === 0) return '今天';
+				if (diffDays === 1) return '昨天';
+				if (diffDays < 7) return `${diffDays}天前`;
+				return date.toLocaleDateString('zh-CN');
+			} catch {
+				return dateString;
+			}
+		}
+		function truncateMarkdown(markdown, maxLength = 200) {
+			if (!markdown) return '';
+			const text = markdown.replace(/[#*`_\-\[\]\(\)]/g, '').replace(/\s+/g, ' ');
+			return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+		}
+		function parseTags(tagString) {
+			if (!tagString) return [];
+			return tagString.split(',')
+				.map(tag => tag.trim())
+				.filter(tag => tag.length > 0);
+		}
+		function calculateReadTime(text) {
+			const wordsPerMinute = 200;
+			const wordCount = text.trim().split(/\s+/).length;
+			return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
+		}
+		function renderMarkdownAndLaTeX(markdown, containerId) {
+			const container = document.getElementById(containerId);
+			if (!container) return;
+			if (typeof marked === 'undefined') {
+				loadScript('https://cdn.jsdmirror.com/npm/marked@4.3.0/marked.min.js', function () {
+					loadScript('https://cdn.jsdmirror.com/npm/katex@0.16.9/dist/katex.min.js', function () {
+						loadScript('https://cdn.jsdmirror.com/npm/katex@0.16.9/dist/contrib/auto-render.min.js', function () {
+							renderContent(markdown, container);
+						});
+					});
+				});
+			} else {
+				renderContent(markdown, container);
+			}
+		}
+		function renderContent(markdown, container) {
+			const renderer = new marked.Renderer();
+			renderer.code = function (code, language) {
+				const escapedCode = escapeHtml(code);
+				console.log(escapedCode);
+				const languageClass = language ? `language-${language}` : '';
+				return `
+                    <div style="position: relative; margin: 20px 0;">
+                        <pre>
+                            <code class="${languageClass}">${escapedCode}</code>
+                        </pre>
+                        <button class="codecopy-btn" onclick="copyCode(this)" style="position: absolute; top: 10px; right: 10px; padding: 6px 12px; font-size: 0.85rem;">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                `;
+			};
+			const html = marked.parse(markdown, { renderer: renderer, gfm: true });
+			container.innerHTML = html;
+			if (typeof hljs !== 'undefined') {
+				setTimeout(() => {
+					container.querySelectorAll('pre code').forEach((block) => {
+						hljs.highlightElement(block);
+					});
+				}, 100);
+			}
+			if (typeof renderMathInElement !== 'undefined') {
+				renderMathInElement(container, {
+					delimiters: [
+						{ left: '$$', right: '$$', display: true },
+						{ left: '$', right: '$', display: false }
+					],
+					throwOnError: false
+				});
+			}
+		}
+		function copyCode(button) {
+			const code = button.parentElement.querySelector('code').textContent;
+			navigator.clipboard.writeText(code).then(() => {
+				const originalHtml = button.innerHTML;
+				button.innerHTML = '<i class="fas fa-check"></i>';
+				button.style.color = 'var(--success)';
+				setTimeout(() => {
+					button.innerHTML = originalHtml;
+					button.style.color = '';
+				}, 2000);
+			}).catch(() => {
+				button.innerHTML = '<i class="fas fa-times"></i>';
+				button.style.color = 'var(--danger)';
+				setTimeout(() => {
+					button.innerHTML = '<i class="fas fa-copy"></i>';
+					button.style.color = '';
+				}, 2000);
+			});
+		}
+		function loadScript(src, callback) {
+			const script = document.createElement('script');
+			script.src = src;
+			script.onload = callback;
+			document.head.appendChild(script);
+		}
+		document.addEventListener('DOMContentLoaded', async function () {
+			setTimeout(() => {
+				const loader = document.getElementById('loader');
+				loader.style.opacity = '0';
+				setTimeout(() => {
+					loader.style.display = 'none';
+				}, 500);
+			}, 1000);
+			await checkAuth();
+			await router.init();
+			document.body.style.opacity = '0';
+			document.body.style.transition = 'opacity 0.5s';
+			setTimeout(() => {
+				document.body.style.opacity = '1';
+			}, 100);
+			document.addEventListener('keydown', function (e) {
+				if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+					e.preventDefault();
+					showSearch();
+				}
+				if (e.key === 'Escape') {
+					const overlay = document.querySelector('.modal-overlay');
+					if (overlay) overlay.remove();
+				}
+			});
+		});
+		function showSearch() {
+			showToast('搜索功能开发中...', 'info');
+		}
+	</script>
+</body>
+
+</html>
