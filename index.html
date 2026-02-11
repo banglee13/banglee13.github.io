@@ -2069,20 +2069,19 @@
         // 修改：使用 Markdown 语法而非 HTML，并修复对象键值
 		function insertBlock(type) {
 		    const blocks = {
-		        note: ["::: note\n", "\n:::"],
-		        tip: ["::: tip\n", "\n:::"],
-		        warning: ["::: warning\n", "\n:::"],
-		        danger: ["::: danger\n", "\n:::"],
-		        highlight: ["==", "=="], 
-		        badge: ["<span class='Badge tip'>", "</span>"] // 徽章建议保持 HTML 除非写更复杂的解析
+		        // 注意：开头和结尾都加上换行符 \n，确保 markdown 解析器能正确识别区块
+		        note: ["\n::: note\n", "\n:::\n"],
+		        tip: ["\n::: tip\n", "\n:::\n"],
+		        warning: ["\n::: warning\n", "\n:::\n"],
+		        danger: ["\n::: danger\n", "\n:::\n"],
+		        highlight: ["==", "=="],
+		        badge: [" <span class='Badge tip'>", "</span> "] // 前后加空格防止粘连
 		    };
-            // 确保 type 存在，防止报错
-            if (blocks[type]) {
+		    
+		    if (blocks[type]) {
 		        const [before, after] = blocks[type];
 		        insertText(before, after);
-            } else {
-                console.error("Unknown block type:", type);
-            }
+		    }
 		}
 		function escapeHtml(str) {
 			return str.replace(/&/g, '&amp;')
@@ -2143,22 +2142,59 @@
 			}
 		}
 		function renderContent(markdown, container) {
-            // 新增：解析高亮语法 ==text==
-            markdown = markdown.replace(/==([^=]+)==/g, '<span class="marker-text-highlight">$1</span>');
-
-            // 新增：解析 ::: type title 语法
-            // 正则匹配 ::: type [可选标题] \n 内容 \n :::
-            markdown = markdown.replace(/::: (\w+)(?: (.*))?\n([\s\S]*?)\n:::/g, function(match, type, title, content) {
-                // 如果没有标题，默认使用 Type 大写
-                let displayTitle = title ? title.trim() : type.toUpperCase();
-                // 递归解析内部 Markdown 内容 (这就允许在提示框里写粗体、列表等)
-                // 注意：这里简单调用 marked.parse 可能会包裹一层 <p>，但在这个场景下通常是可以接受的
-                let parsedContent = marked.parse(content);
-                return `<div class="custom-block ${type}">
-                    <p class="custom-block-title">${displayTitle}</p>
-                    ${parsedContent}
-                </div>`;
-            });
+		    // 1. 先处理高亮语法 ==text==
+		    markdown = markdown.replace(/==([^=]+)==/g, '<span class="marker-text-highlight">$1</span>');
+		
+		    // 2. 解析 ::: 容器语法
+		    markdown = markdown.replace(/::: (\w+)(?: (.*))?\n([\s\S]*?)\n:::/g, function(match, type, title, content) {
+		        // 如果没有标题，默认使用类型名称大写
+		        let displayTitle = title ? title.trim() : type.toUpperCase();
+		        
+		        // 预解析内部的 Markdown 内容
+		        let parsedContent = marked.parse(content);
+		        
+		        // 【关键修复】：这里必须写成一行，或者确保没有行首空格！
+		        // 之前的版本因为有换行和缩进，导致 </div> 被解析成了代码块
+		        return `<div class="custom-block ${type}"><p class="custom-block-title">${displayTitle}</p>${parsedContent}</div>`;
+		    });
+		
+		    // 3. 配置代码块渲染器 (保持原有逻辑)
+		    const renderer = new marked.Renderer();
+		    renderer.code = function (code, language) {
+		        const escapedCode = escapeHtml(code);
+		        const languageClass = language ? `language-${language}` : '';
+		        return `
+		            <div style="position: relative; margin: 20px 0;">
+		                <pre><code class="${languageClass}">${escapedCode}</code></pre>
+		                <button class="codecopy-btn" onclick="copyCode(this)" style="position: absolute; top: 10px; right: 10px; padding: 6px 12px; font-size: 0.85rem;">
+		                    <i class="fas fa-copy"></i>
+		                </button>
+		            </div>
+		        `;
+		    };
+		
+		    // 4. 最后进行整体解析
+		    const html = marked.parse(markdown, { renderer: renderer, gfm: true });
+		    container.innerHTML = html;
+		
+		    // 5. 语法高亮和公式渲染
+		    if (typeof hljs !== 'undefined') {
+		        setTimeout(() => {
+		            container.querySelectorAll('pre code').forEach((block) => {
+		                hljs.highlightElement(block);
+		            });
+		        }, 100);
+		    }
+		    if (typeof renderMathInElement !== 'undefined') {
+		        renderMathInElement(container, {
+		            delimiters: [
+		                { left: '$$', right: '$$', display: true },
+		                { left: '$', right: '$', display: false }
+		            ],
+		            throwOnError: false
+		        });
+		    }
+		}
 
 			const renderer = new marked.Renderer();
 			renderer.code = function (code, language) {
