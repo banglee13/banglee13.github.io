@@ -2195,42 +2195,6 @@
 		        });
 		    }
 		}
-
-			const renderer = new marked.Renderer();
-			renderer.code = function (code, language) {
-				const escapedCode = escapeHtml(code);
-				console.log(escapedCode);
-				const languageClass = language ? `language-${language}` : '';
-				return `
-                    <div style="position: relative; margin: 20px 0;">
-                        <pre>
-                            <code class="${languageClass}">${escapedCode}</code>
-                        </pre>
-                        <button class="codecopy-btn" onclick="copyCode(this)" style="position: absolute; top: 10px; right: 10px; padding: 6px 12px; font-size: 0.85rem;">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                    </div>
-                `;
-			};
-			const html = marked.parse(markdown, { renderer: renderer, gfm: true });
-			container.innerHTML = html;
-			if (typeof hljs !== 'undefined') {
-				setTimeout(() => {
-					container.querySelectorAll('pre code').forEach((block) => {
-						hljs.highlightElement(block);
-					});
-				}, 100);
-			}
-			if (typeof renderMathInElement !== 'undefined') {
-				renderMathInElement(container, {
-					delimiters: [
-						{ left: '$$', right: '$$', display: true },
-						{ left: '$', right: '$', display: false }
-					],
-					throwOnError: false
-				});
-			}
-		}
 		function copyCode(button) {
 			const code = button.parentElement.querySelector('code').textContent;
 			navigator.clipboard.writeText(code).then(() => {
