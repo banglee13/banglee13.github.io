@@ -1816,13 +1816,22 @@
                     <div class="form-group">
                         <label class="form-label"><i class="fas fa-file-alt"></i> 内容</label>
                         <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
-						    <button class="btn btn-light" onclick="insertText('## ', '')" style="font-size: 0.85rem; padding: 8px 12px;"><i class="fas fa-heading"></i> 标题</button>
-						    <button class="btn btn-light" onclick="insertText('**', '**')" style="font-size: 0.85rem; padding: 8px 12px;"><i class="fas fa-bold"></i> 粗体</button>
-						    <button class="btn btn-light" onclick="insertBlock('tip')" style="font-size: 0.85rem; padding: 8px 12px; border-color: var(--success);">💡 提示框</button>
-						    <button class="btn btn-light" onclick="insertBlock('warning')" style="font-size: 0.85rem; padding: 8px 12px; border-color: var(--warning);">⚠️ 警告框</button>
-						    <button class="btn btn-light" onclick="insertBlock('danger')" style="font-size: 0.85rem; padding: 8px 12px; border-color: var(--danger);">🚫 危险框</button>
-						    <button class="btn btn-light" onclick="insertBlock('highlight')" style="font-size: 0.85rem; padding: 8px 12px;">🖍️ 荧光笔</button>
-						    <button class="btn btn-light" onclick="insertBlock('badge')" style="font-size: 0.85rem; padding: 8px 12px;">🏷️ 徽章</button>
+						    <button class="btn btn-light" onclick="insertText('## ', '')" style="font-size: 0.85rem; padding: 6px 10px;">H2</button>
+						    <button class="btn btn-light" onclick="insertText('**', '**')" style="font-size: 0.85rem; padding: 6px 10px;">B</button>
+						    <button class="btn btn-light" onclick="insertBlock('highlight')" style="font-size: 0.85rem; padding: 6px 10px;">🖍️</button>
+						    
+						    <button class="btn btn-light" onclick="insertBlock('info')" style="font-size: 0.85rem; padding: 6px 10px; color: var(--gray);">Info</button>
+						    <button class="btn btn-light" onclick="insertBlock('note')" style="font-size: 0.85rem; padding: 6px 10px; color: var(--gray);">Note</button>
+						    <button class="btn btn-light" onclick="insertBlock('tip')" style="font-size: 0.85rem; padding: 6px 10px; color: var(--success);">Tip</button>
+						    <button class="btn btn-light" onclick="insertBlock('important')" style="font-size: 0.85rem; padding: 6px 10px; color: var(--primary);">Imp</button>
+						    <button class="btn btn-light" onclick="insertBlock('warning')" style="font-size: 0.85rem; padding: 6px 10px; color: var(--warning);">Warn</button>
+						    <button class="btn btn-light" onclick="insertBlock('caution')" style="font-size: 0.85rem; padding: 6px 10px; color: var(--danger);">Caution</button>
+						    <button class="btn btn-light" onclick="insertBlock('danger')" style="font-size: 0.85rem; padding: 6px 10px; color: var(--danger);">Danger</button>
+						    
+						    <button class="btn btn-light" onclick="insertBlock('details')" style="font-size: 0.85rem; padding: 6px 10px;">📂 折叠</button>
+						    
+						    <button class="btn btn-light" onclick="insertBlock('badge_tip')" style="font-size: 0.85rem; padding: 6px 10px;">🏷️ 绿</button>
+						    <button class="btn btn-light" onclick="insertBlock('badge_warning')" style="font-size: 0.85rem; padding: 6px 10px;">🏷️ 黄</button>
 						</div>
                         <textarea id="article-md" class="form-textarea" placeholder="请输入文章内容（支持Markdown和LaTeX）"></textarea>
                     </div>
@@ -1882,13 +1891,22 @@
                         <div class="form-group">
                             <label class="form-label"><i class="fas fa-file-alt"></i> 内容</label>
                             <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
-							    <button class="btn btn-light" onclick="insertText('## ', '')" style="font-size: 0.85rem; padding: 8px 12px;"><i class="fas fa-heading"></i> 标题</button>
-							    <button class="btn btn-light" onclick="insertText('**', '**')" style="font-size: 0.85rem; padding: 8px 12px;"><i class="fas fa-bold"></i> 粗体</button>
-							    <button class="btn btn-light" onclick="insertBlock('tip')" style="font-size: 0.85rem; padding: 8px 12px; border-color: var(--success);">💡 提示框</button>
-							    <button class="btn btn-light" onclick="insertBlock('warning')" style="font-size: 0.85rem; padding: 8px 12px; border-color: var(--warning);">⚠️ 警告框</button>
-							    <button class="btn btn-light" onclick="insertBlock('danger')" style="font-size: 0.85rem; padding: 8px 12px; border-color: var(--danger);">🚫 危险框</button>
-							    <button class="btn btn-light" onclick="insertBlock('highlight')" style="font-size: 0.85rem; padding: 8px 12px;">🖍️ 荧光笔</button>
-							    <button class="btn btn-light" onclick="insertBlock('badge')" style="font-size: 0.85rem; padding: 8px 12px;">🏷️ 徽章</button>
+							    <button class="btn btn-light" onclick="insertText('## ', '')" style="font-size: 0.85rem; padding: 6px 10px;">H2</button>
+							    <button class="btn btn-light" onclick="insertText('**', '**')" style="font-size: 0.85rem; padding: 6px 10px;">B</button>
+							    <button class="btn btn-light" onclick="insertBlock('highlight')" style="font-size: 0.85rem; padding: 6px 10px;">🖍️</button>
+							    
+							    <button class="btn btn-light" onclick="insertBlock('info')" style="font-size: 0.85rem; padding: 6px 10px; color: var(--gray);">Info</button>
+							    <button class="btn btn-light" onclick="insertBlock('note')" style="font-size: 0.85rem; padding: 6px 10px; color: var(--gray);">Note</button>
+							    <button class="btn btn-light" onclick="insertBlock('tip')" style="font-size: 0.85rem; padding: 6px 10px; color: var(--success);">Tip</button>
+							    <button class="btn btn-light" onclick="insertBlock('important')" style="font-size: 0.85rem; padding: 6px 10px; color: var(--primary);">Imp</button>
+							    <button class="btn btn-light" onclick="insertBlock('warning')" style="font-size: 0.85rem; padding: 6px 10px; color: var(--warning);">Warn</button>
+							    <button class="btn btn-light" onclick="insertBlock('caution')" style="font-size: 0.85rem; padding: 6px 10px; color: var(--danger);">Caution</button>
+							    <button class="btn btn-light" onclick="insertBlock('danger')" style="font-size: 0.85rem; padding: 6px 10px; color: var(--danger);">Danger</button>
+							    
+							    <button class="btn btn-light" onclick="insertBlock('details')" style="font-size: 0.85rem; padding: 6px 10px;">📂 折叠</button>
+							    
+							    <button class="btn btn-light" onclick="insertBlock('badge_tip')" style="font-size: 0.85rem; padding: 6px 10px;">🏷️ 绿</button>
+							    <button class="btn btn-light" onclick="insertBlock('badge_warning')" style="font-size: 0.85rem; padding: 6px 10px;">🏷️ 黄</button>
 							</div>
                             <textarea id="article-md" class="form-textarea">${escapeHtml(article.md || '')}</textarea>
                         </div>
@@ -2069,13 +2087,23 @@
         // 修改：使用 Markdown 语法而非 HTML，并修复对象键值
 		function insertBlock(type) {
 		    const blocks = {
-		        // 注意：开头和结尾都加上换行符 \n，确保 markdown 解析器能正确识别区块
+		        // 基础提示块
+		        info: ["\n::: info\n", "\n:::\n"],
 		        note: ["\n::: note\n", "\n:::\n"],
 		        tip: ["\n::: tip\n", "\n:::\n"],
+		        important: ["\n::: important\n", "\n:::\n"],
 		        warning: ["\n::: warning\n", "\n:::\n"],
+		        caution: ["\n::: caution\n", "\n:::\n"],
 		        danger: ["\n::: danger\n", "\n:::\n"],
+		        
+		        // 特殊功能
+		        details: ["\n::: details 点击展开查看\n", "\n:::\n"], // 折叠块
 		        highlight: ["==", "=="],
-		        badge: [" <span class='Badge tip'>", "</span> "] // 前后加空格防止粘连
+		        
+		        // 徽章 (Badges) - 使用 HTML 插入
+		        badge_tip: [" <span class='Badge tip'>", "</span> "],
+		        badge_warning: [" <span class='Badge warning'>", "</span> "],
+		        badge_danger: [" <span class='Badge danger'>", "</span> "]
 		    };
 		    
 		    if (blocks[type]) {
@@ -2145,7 +2173,7 @@
 		    // 1. 先处理高亮语法 ==text==
 		    markdown = markdown.replace(/==([^=]+)==/g, '<span class="marker-text-highlight">$1</span>');
 		
-		    // 2. 解析 ::: 容器语法
+		    // 2. 解析 ::: 容器语法 (支持 details 折叠块和其他通用块)
 		    markdown = markdown.replace(/::: (\w+)(?: (.*))?\n([\s\S]*?)\n:::/g, function(match, type, title, content) {
 		        // 如果没有标题，默认使用类型名称大写
 		        let displayTitle = title ? title.trim() : type.toUpperCase();
@@ -2153,8 +2181,12 @@
 		        // 预解析内部的 Markdown 内容
 		        let parsedContent = marked.parse(content);
 		        
-		        // 【关键修复】：这里必须写成一行，或者确保没有行首空格！
-		        // 之前的版本因为有换行和缩进，导致 </div> 被解析成了代码块
+		        // 【新增逻辑】：如果是 details，渲染为折叠组件
+		        if (type === 'details') {
+		            return `<details class="custom-block details"><summary>${displayTitle}</summary>${parsedContent}</details>`;
+		        }
+		        
+		        // 其他情况 (tip, info, warning, danger, caution, important, note)
 		        return `<div class="custom-block ${type}"><p class="custom-block-title">${displayTitle}</p>${parsedContent}</div>`;
 		    });
 		
