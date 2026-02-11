@@ -1884,25 +1884,16 @@
                         <div class="form-group">
                             <label class="form-label"><i class="fas fa-file-alt"></i> 内容</label>
                             <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
-                                <button class="btn btn-light" onclick="insertText('## ', '')" style="font-size: 0.85rem; padding: 8px 12px;">
-                                    <i class="fas fa-heading"></i> 标题
-                                </button>
-                                <button class="btn btn-light" onclick="insertText('**', '**')" style="font-size: 0.85rem; padding: 8px 12px;">
-                                    <i class="fas fa-bold"></i> 粗体
-                                </button>
-                                <button class="btn btn-light" onclick="insertText('*', '*')" style="font-size: 0.85rem; padding: 8px 12px;">
-                                    <i class="fas fa-italic"></i> 斜体
-                                </button>
-                                <button class="btn btn-light" onclick="insertText('[链接文字](', 'url)')" style="font-size: 0.85rem; padding: 8px 12px;">
-                                    <i class="fas fa-link"></i> 链接
-                                </button>
-                                <button class="btn btn-light" onclick="insertText('![描述](', 'image-url)')" style="font-size: 0.85rem; padding: 8px 12px;">
-                                    <i class="fas fa-image"></i> 图片
-                                </button>
-                                <button class="btn btn-light" onclick="insertText('\`\`\`\\n', '\\n\`\`\`')" style="font-size: 0.85rem; padding: 8px 12px;">
-                                    <i class="fas fa-code"></i> 代码块
-                                </button>
-                            </div>
+							    <button class="btn btn-light" onclick="insertText('## ', '')" style="font-size: 0.85rem; padding: 8px 12px;"><i class="fas fa-heading"></i> 标题</button>
+							    <button class="btn btn-light" onclick="insertText('**', '**')" style="font-size: 0.85rem; padding: 8px 12px;"><i class="fas fa-bold"></i> 粗体</button>
+							    
+							    <button class="btn btn-light" onclick="insertText('<div class=\'custom-block tip\'>\\n  <p class=\'custom-block-title\'>TIP</p>\\n  ', '\\n</div>')" style="font-size: 0.85rem; padding: 8px 12px; border-color: var(--success);">💡 提示框</button>
+							    <button class="btn btn-light" onclick="insertText('<div class=\'custom-block warning\'>\\n  <p class=\'custom-block-title\'>WARNING</p>\\n  ', '\\n</div>')" style="font-size: 0.85rem; padding: 8px 12px; border-color: var(--warning);">⚠️ 警告框</button>
+							    <button class="btn btn-light" onclick="insertText('<div class=\'custom-block danger\'>\\n  <p class=\'custom-block-title\'>CAUTION</p>\\n  ', '\\n</div>')" style="font-size: 0.85rem; padding: 8px 12px; border-color: var(--danger);">🚫 危险框</button>
+							    
+							    <button class="btn btn-light" onclick="insertText('<span class=\'marker-text-highlight\'>', '</span>')" style="font-size: 0.85rem; padding: 8px 12px;">🖍️ 荧光笔</button>
+							    <button class="btn btn-light" onclick="insertText('<span class=\'Badge tip\'>', '</span>')" style="font-size: 0.85rem; padding: 8px 12px;">🏷️ 徽章</button>
+							</div>
                             <textarea id="article-md" class="form-textarea">${escapeHtml(article.md || '')}</textarea>
                         </div>
                         <div class="action-buttons">
