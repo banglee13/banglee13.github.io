@@ -1818,13 +1818,11 @@
                         <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
 						    <button class="btn btn-light" onclick="insertText('## ', '')" style="font-size: 0.85rem; padding: 8px 12px;"><i class="fas fa-heading"></i> 标题</button>
 						    <button class="btn btn-light" onclick="insertText('**', '**')" style="font-size: 0.85rem; padding: 8px 12px;"><i class="fas fa-bold"></i> 粗体</button>
-						    
-						    <button class="btn btn-light" onclick="insertText('<div class=\'custom-block tip\'>\\n  <p class=\'custom-block-title\'>TIP</p>\\n  ', '\\n</div>')" style="font-size: 0.85rem; padding: 8px 12px; border-color: var(--success);">💡 提示框</button>
-						    <button class="btn btn-light" onclick="insertText('<div class=\'custom-block warning\'>\\n  <p class=\'custom-block-title\'>WARNING</p>\\n  ', '\\n</div>')" style="font-size: 0.85rem; padding: 8px 12px; border-color: var(--warning);">⚠️ 警告框</button>
-						    <button class="btn btn-light" onclick="insertText('<div class=\'custom-block danger\'>\\n  <p class=\'custom-block-title\'>CAUTION</p>\\n  ', '\\n</div>')" style="font-size: 0.85rem; padding: 8px 12px; border-color: var(--danger);">🚫 危险框</button>
-						    
-						    <button class="btn btn-light" onclick="insertText('<span class=\'marker-text-highlight\'>', '</span>')" style="font-size: 0.85rem; padding: 8px 12px;">🖍️ 荧光笔</button>
-						    <button class="btn btn-light" onclick="insertText('<span class=\'Badge tip\'>', '</span>')" style="font-size: 0.85rem; padding: 8px 12px;">🏷️ 徽章</button>
+						    <button class="btn btn-light" onclick="insertBlock('tip')" style="font-size: 0.85rem; padding: 8px 12px; border-color: var(--success);">💡 提示框</button>
+						    <button class="btn btn-light" onclick="insertBlock('warning')" style="font-size: 0.85rem; padding: 8px 12px; border-color: var(--warning);">⚠️ 警告框</button>
+						    <button class="btn btn-light" onclick="insertBlock('danger')" style="font-size: 0.85rem; padding: 8px 12px; border-color: var(--danger);">🚫 危险框</button>
+						    <button class="btn btn-light" onclick="insertBlock('highlight')" style="font-size: 0.85rem; padding: 8px 12px;">🖍️ 荧光笔</button>
+						    <button class="btn btn-light" onclick="insertBlock('badge')" style="font-size: 0.85rem; padding: 8px 12px;">🏷️ 徽章</button>
 						</div>
                         <textarea id="article-md" class="form-textarea" placeholder="请输入文章内容（支持Markdown和LaTeX）"></textarea>
                     </div>
@@ -1886,13 +1884,11 @@
                             <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
 							    <button class="btn btn-light" onclick="insertText('## ', '')" style="font-size: 0.85rem; padding: 8px 12px;"><i class="fas fa-heading"></i> 标题</button>
 							    <button class="btn btn-light" onclick="insertText('**', '**')" style="font-size: 0.85rem; padding: 8px 12px;"><i class="fas fa-bold"></i> 粗体</button>
-							    
-							    <button class="btn btn-light" onclick="insertText('<div class=\'custom-block tip\'>\\n  <p class=\'custom-block-title\'>TIP</p>\\n  ', '\\n</div>')" style="font-size: 0.85rem; padding: 8px 12px; border-color: var(--success);">💡 提示框</button>
-							    <button class="btn btn-light" onclick="insertText('<div class=\'custom-block warning\'>\\n  <p class=\'custom-block-title\'>WARNING</p>\\n  ', '\\n</div>')" style="font-size: 0.85rem; padding: 8px 12px; border-color: var(--warning);">⚠️ 警告框</button>
-							    <button class="btn btn-light" onclick="insertText('<div class=\'custom-block danger\'>\\n  <p class=\'custom-block-title\'>CAUTION</p>\\n  ', '\\n</div>')" style="font-size: 0.85rem; padding: 8px 12px; border-color: var(--danger);">🚫 危险框</button>
-							    
-							    <button class="btn btn-light" onclick="insertText('<span class=\'marker-text-highlight\'>', '</span>')" style="font-size: 0.85rem; padding: 8px 12px;">🖍️ 荧光笔</button>
-							    <button class="btn btn-light" onclick="insertText('<span class=\'Badge tip\'>', '</span>')" style="font-size: 0.85rem; padding: 8px 12px;">🏷️ 徽章</button>
+							    <button class="btn btn-light" onclick="insertBlock('tip')" style="font-size: 0.85rem; padding: 8px 12px; border-color: var(--success);">💡 提示框</button>
+							    <button class="btn btn-light" onclick="insertBlock('warning')" style="font-size: 0.85rem; padding: 8px 12px; border-color: var(--warning);">⚠️ 警告框</button>
+							    <button class="btn btn-light" onclick="insertBlock('danger')" style="font-size: 0.85rem; padding: 8px 12px; border-color: var(--danger);">🚫 危险框</button>
+							    <button class="btn btn-light" onclick="insertBlock('highlight')" style="font-size: 0.85rem; padding: 8px 12px;">🖍️ 荧光笔</button>
+							    <button class="btn btn-light" onclick="insertBlock('badge')" style="font-size: 0.85rem; padding: 8px 12px;">🏷️ 徽章</button>
 							</div>
                             <textarea id="article-md" class="form-textarea">${escapeHtml(article.md || '')}</textarea>
                         </div>
@@ -2069,6 +2065,17 @@
 			textarea.focus();
 			textarea.selectionStart = start + before.length;
 			textarea.selectionEnd = end + before.length;
+		}
+		function insertBlock(type) {
+		    const blocks = {
+		        tip: ["<div class='custom-block tip'>\n  <p class='custom-block-title'>TIP</p>\n  ", "\n</div>"],
+		        warning: ["<div class='custom-block warning'>\n  <p class='custom-block-title'>WARNING</p>\n  ", "\n</div>"],
+		        danger: ["<div class='custom-block danger'>\n  <p class='custom-block-title'>CAUTION</p>\n  ", "\n</div>"],
+		        highlight: ["<span class='marker-text-highlight'>", "</span>"],
+		        badge: ["<span class='Badge tip'>", "</span>"]
+		    };
+		    const [before, after] = blocks[type];
+		    insertText(before, after);
 		}
 		function escapeHtml(str) {
 			return str.replace(/&/g, '&amp;')
