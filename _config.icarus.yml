@@ -216,15 +216,15 @@ widgets:
     # Gravatar 邮箱地址
     gravatar:
     # 「关注我」按钮的链接
-    follow_link: https://github.com/renbaoshuo
+    follow_link: https://github.com/banglee13
     # 社交按钮
     social_links:
       Github:
         icon: fab fa-github
         url: https://github.com/renbaoshuo/hexo-for-oiers
-      RSS:
-        icon: fas fa-rss
-        url: /atom.xml
+      Luogu:
+        icon: 
+        url: https://www.luogu.com.cn/user/681292
   # 文章目录
   - position: left
     type: toc
@@ -239,10 +239,9 @@ widgets:
     type: links
     # 链接的名称和指向
     links:
-      Hexo: https://hexo.io
-      Bulma: https://bulma.io
-      Baoshuo: https://baoshuo.ren
-      Hexo for OIers: https://github.com/renbaoshuo/hexo-for-oiers
+      Luogu: https://www.luogu.com.cn
+      oierdb: https://oier.baoshuo.dev/
+      
   # 分类
   - position: left
     type: categories
