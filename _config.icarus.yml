@@ -6,7 +6,7 @@ variant: default
 
 # Logo
 logo:
-  text: Hexo for OIers
+  text: Banglee Blog
 
 # 页面元数据配置
 head:
@@ -204,7 +204,7 @@ widgets:
     position: left
     type: profile
     # 作者
-    author: Hexo for OIers
+    author: banglee
     # Author title
     author_title:
     # 位置
