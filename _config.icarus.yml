@@ -223,7 +223,7 @@ widgets:
         icon: fab fa-github
         url: https://github.com/renbaoshuo/hexo-for-oiers
       Luogu:
-        icon: 
+        icon: fas fa-code
         url: https://www.luogu.com.cn/user/681292
   # 文章目录
   - position: left
@@ -241,7 +241,7 @@ widgets:
     links:
       Luogu: https://www.luogu.com.cn
       oierdb: https://oier.baoshuo.dev/
-      
+
   # 分类
   - position: left
     type: categories
