@@ -212,7 +212,7 @@ widgets:
     # 头像
     avatar: https://github.githubassets.com/images/modules/logos_page/Octocat.png
     # 是否使用圆形头像
-    avatar_rounded: false
+    avatar_rounded: true
     # Gravatar 邮箱地址
     gravatar:
     # 「关注我」按钮的链接
