@@ -309,10 +309,10 @@ plugins:
     site_id:
   # 启用 KaTeX 数学公式支持
   # https://katex.org/
-  katex: true
+  katex: false
   # 启用 MathJax 数学公式支持
   # https://www.mathjax.org/
-  mathjax: false
+  mathjax: true
   # 开启 Outdated Browser 插件
   # http://outdatedbrowser.com/
   outdated_browser: false
