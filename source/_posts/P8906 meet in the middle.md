@@ -1,6 +1,8 @@
 ---
 title: P8906 meet in the middle
 date: 2026-04-18 11:15:00
+tags: [meet in the middle]
+categories: [OI]
 ---
 
 很妙的一道题，结合了 meet in the middle 的思想。
