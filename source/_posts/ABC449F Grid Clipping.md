@@ -1,7 +1,7 @@
 ---
 title: ABC449F Grid Clipping
 date: 2026-04-27 14:31:55
-tags: [扫描线, 几何, 线段树]
+tags: [扫描线, 线段树]
 categories: [OI]
 ---
 
