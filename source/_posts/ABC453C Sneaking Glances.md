@@ -13,7 +13,7 @@ categories: [OI]
 这样时间复杂度是 $O(2^N)$。
 
 ## Code
-```cpp line-numbers
+```cpp
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
