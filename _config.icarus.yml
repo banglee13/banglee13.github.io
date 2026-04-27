@@ -208,9 +208,9 @@ widgets:
     # Author title
     author_title:
     # 位置
-    location: localhost
+    location: China, GD, FS
     # 头像
-    avatar: https://github.githubassets.com/images/modules/logos_page/Octocat.png
+    avatar: https://cdn.luogu.com.cn/upload/usericon/681292.png
     # 是否使用圆形头像
     avatar_rounded: true
     # Gravatar 邮箱地址
