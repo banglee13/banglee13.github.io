@@ -210,7 +210,7 @@ widgets:
     # 位置
     location: localhost
     # 头像
-    avatar: https://d33wubrfki0l68.cloudfront.net/6657ba50e702d84afb32fe846bed54fba1a77add/827ae/logo.svg
+    avatar: https://github.githubassets.com/images/modules/logos_page/Octocat.png
     # 是否使用圆形头像
     avatar_rounded: false
     # Gravatar 邮箱地址
