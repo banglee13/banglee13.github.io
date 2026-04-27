@@ -1,5 +1,5 @@
 ---
-title: ABC232G 建图优化
+title: ABC232G
 date: 2026-04-18 09:49:00
 tags: [建图优化]
 categories: [OI]
