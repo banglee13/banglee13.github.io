@@ -221,7 +221,7 @@ widgets:
     social_links:
       Github:
         icon: fab fa-github
-        url: https://github.com/renbaoshuo/hexo-for-oiers
+        url: https://github.com/banglee13
       Luogu:
         icon: fas fa-code
         url: https://www.luogu.com.cn/user/681292

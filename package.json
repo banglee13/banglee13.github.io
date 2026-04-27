@@ -7,6 +7,8 @@
     "clean": "hexo clean",
     "deploy": "hexo deploy",
     "server": "hexo server",
+    "update-location": "node scripts/update-location.js",
+    "location-daemon": "node scripts/location-server.js",
     "postinstall": "patch-package"
   },
   "hexo": {
