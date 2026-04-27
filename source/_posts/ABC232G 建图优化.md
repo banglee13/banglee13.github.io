@@ -14,13 +14,11 @@ categories: [OI]
 
 $$
 \begin{aligned}
-
 w(i,j) &= \begin{cases}
-A_i + B_j & (A_i + B_j < m) \\
+A_i + B_j & (A_i + B_j < m) \\\\
 A_i + B_j - m & (A_i + B_j \ge m)
-\end{cases} \\
+\end{cases} \\\\
 &= A_i + B_j - k \cdot m \quad (k \in \{0,1\})
-
 \end{aligned}
 $$
 
@@ -33,7 +31,7 @@ $$
 
 1. 相邻的辅助节点 $P_k \to P_{k+1}$ 连边，权值就是 $B_{pos[k+1]} - B_{pos[k]}$。为了形成循环（即 $A_i + B_j \ge m$ 的情况），将最后一个辅助节点连向第一个，权值为 $m - (B_{max} - B_{min})$。此时图就是一个有向环了。
 2. 在辅助环中找到了合适的位置，就可以免费回到真实的图中。即 $e[n+k] \to B_{pos[k]}.id, w=0$。
-3. 对于每个原始点 $i$，找到一个最理想的切入点。由公式 $(A_i + B_j) \bmod m$，我们希望 $A_i + B_j$ 尽可能尽可能小或者尽可能接近 $m$（且 $\ge m$）。考虑用 `lower_bound` 找到第一个满足 $B_k \ge m - A_i$ 的辅助节点。从原始点 $i$ 向该辅助节点 $n+k$ 连一条边，权值为 $(A_i + B_k) \bmod m$。
+3. 对于每个原始点 $i$，找到一个最理想的切入点。由公式 $(A_i + B_j) \bmod m$，我们希望 $A_i + B_j$ 尽可能小或者尽可能接近 $m$（且 $\ge m$）。考虑用 `lower_bound` 找到第一个满足 $B_k \ge m - A_i$ 的辅助节点。从原始点 $i$ 向该辅助节点 $n+k$ 连一条边，权值为 $(A_i + B_k) \bmod m$。
 
 ## 实现
 建图后跑 dijkstra 即可。
