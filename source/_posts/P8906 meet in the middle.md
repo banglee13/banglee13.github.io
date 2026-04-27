@@ -1,3 +1,8 @@
+---
+title: P8906 meet in the middle
+date: 2026-04-18 11:15:00
+---
+
 很妙的一道题，结合了 meet in the middle 的思想。
 
 ## 思路
