@@ -1,6 +1,6 @@
 ---
 title: ABC199E Permutation
-date: 2026-03-20 13:28:00
+date: 2026-03-20 13:28
 tags: [状压 dp]
 categories: [OI]
 ---

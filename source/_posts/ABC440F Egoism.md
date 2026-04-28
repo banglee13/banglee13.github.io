@@ -1,6 +1,6 @@
 ---
 title: ABC440F Egoism
-date: 2026-01-13 13:36:00
+date: 2026-01-13 13:36
 tags: [贪心, 树状数组]
 categories: [OI]
 ---
