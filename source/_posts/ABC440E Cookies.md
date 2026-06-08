@@ -2,7 +2,7 @@
 title: ABC440E Cookies
 date: 2026-01-13 13:20
 tags: [贪心, 搜索]
-categories: [OI]
+categories: [OI,AtCoder]
 ---
 
 ## AT_abc440_e [ABC440E] Cookies 题解

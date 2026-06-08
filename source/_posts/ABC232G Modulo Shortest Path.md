@@ -2,7 +2,7 @@
 title: ABC232G Modulo Shortest Path
 date: 2026-04-18 09:49
 tags: [建图优化]
-categories: [OI]
+categories: [OI,AtCoder]
 ---
 
 [problem](https://www.luogu.com.cn/problem/AT_abc232_g)

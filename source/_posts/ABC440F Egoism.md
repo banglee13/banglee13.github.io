@@ -2,7 +2,7 @@
 title: ABC440F Egoism
 date: 2026-01-13 13:36
 tags: [贪心, 树状数组]
-categories: [OI]
+categories: [OI,AtCoder]
 ---
 
 ## AT_abc440_f [ABC440F] Egoism 题解

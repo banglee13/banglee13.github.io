@@ -1,8 +1,8 @@
 ---
-title: P8906
+title: P8906 [USACO22DEC] Breakdown P
 date: 2026-04-18 11:15
 tags: [meet in the middle]
-categories: [OI]
+categories: [OI,洛谷]
 ---
 
 很妙的一道题，结合了 meet in the middle 的思想。
