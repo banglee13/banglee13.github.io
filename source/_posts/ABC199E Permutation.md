@@ -1,8 +1,8 @@
 ---
 title: ABC199E Permutation
 date: 2026-03-20 13:28
-tags: [状压 dp]
-categories: [OI]
+tags: [动态规划]
+categories: [OI,AtCoder]
 ---
 
 [题目传送门](https://www.luogu.com.cn/problem/AT_abc199_e)
