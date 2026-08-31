@@ -159,8 +159,8 @@ importers:
         specifier: ^0.64.0
         version: 0.64.0
       subset-font:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.6.0
+        version: 2.6.0
       svelte:
         specifier: ^5.56.8
         version: 5.56.8
@@ -5949,8 +5949,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  subset-font@2.5.0:
-    resolution: {integrity: sha512-Vsa8ngQ/ohhUj0an7on49y9jLZ2rK5U+T1FzPM4/ZQY0xUy5mLis6BfFtPGzecTjFgYXQlvY7FlsJF4t3R/6Ug==}
+  subset-font@2.6.0:
+    resolution: {integrity: sha512-iqaziPrYUuVp74E9ISripkQpKMSjMXhc9OtPfya6xh8in/SeQcYRUs0nsILd0dh/KF4olmQoXDVnOIOsB6bIxA==}
 
   supports-color@2.0.0:
     resolution: {integrity: sha512-KKNVtd6pCYgPIKU4cp2733HWYCpplQhddZLBUryaAHou723x+FRzQ5Df824Fj+IyyuiQTRoub4SnIFfIcrp70g==}
@@ -13585,7 +13585,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  subset-font@2.5.0:
+  subset-font@2.6.0:
     dependencies:
       fontverter: 2.0.0
       harfbuzzjs: 0.10.3
