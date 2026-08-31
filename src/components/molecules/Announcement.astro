@@ -1,0 +1,159 @@
+---
+import { Icon } from "astro-icon/components";
+import { announcementConfig } from "@/config/announcementConfig";
+import I18nKey from "@/i18n/i18nKey";
+import { i18n } from "@/i18n/translation";
+import WidgetLayout from "./WidgetLayout.astro";
+
+const config = announcementConfig;
+
+interface Props {
+	class?: string;
+	style?: string;
+}
+const className = Astro.props.class;
+const style = Astro.props.style;
+const contentText = config.content || config.text || "";
+const link = config.link;
+const hasLink = link && link.enable !== false && link.text && link.url;
+const isExternal =
+	hasLink &&
+	(link.external === true ||
+		(/^https?:\/\//i.test(link.url) && link.external !== false));
+const closeDuration = Number(config.closeDuration ?? 86400);
+---
+
+<!-- 组件显示由 sidebarConfig 统一控制，有内容时渲染 -->
+{contentText && (
+	<WidgetLayout
+		name={config.title || i18n(I18nKey.announcement)}
+		id="announcement"
+		class={className}
+		style={style}
+	>
+		<div class="announcement-wrapper flex flex-col" data-close-duration={String(closeDuration)}>
+			<!-- 公告栏内容 -->
+			<div class="text-75 leading-relaxed mb-3 break-words whitespace-pre-line text-sm">
+				{contentText}
+			</div>
+
+			<!-- 可选链接和关闭按钮 -->
+			{(hasLink || config.closable) && (
+				<div class="flex items-center justify-between gap-3">
+					<div>
+						{hasLink && (
+							<a
+								href={link.url}
+								target={isExternal ? "_blank" : "_self"}
+								rel={isExternal ? "noopener noreferrer" : undefined}
+								class="announcement-btn inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-lg bg-[var(--btn-regular-bg)] text-[var(--primary)] hover:bg-[var(--btn-regular-bg-hover)] active:bg-[var(--btn-regular-bg-active)] active:scale-95 transition-all shadow-sm"
+							>
+								<span>{link.text}</span>
+								{isExternal && (
+									<Icon
+										name="material-symbols:arrow-outward-rounded"
+										class="text-sm opacity-80"
+									/>
+								)}
+							</a>
+						)}
+					</div>
+
+					{config.closable && (
+						<button
+							type="button"
+							class="announcement-close-btn h-7 w-7 flex items-center justify-center rounded-lg bg-[var(--btn-regular-bg)] text-50 hover:text-[var(--error)] hover:bg-[var(--error-container)]/30 active:scale-95 transition-all cursor-pointer shadow-sm"
+							onclick="closeAnnouncement()"
+							aria-label={i18n(I18nKey.announcementClose)}
+							title={i18n(I18nKey.announcementClose)}
+						>
+							<Icon name="material-symbols:close-rounded" class="text-base" />
+						</button>
+					)}
+				</div>
+			)}
+		</div>
+	</WidgetLayout>
+)}
+
+<script>
+	const STORAGE_KEY_CLOSED = "announcementClosed";
+	const STORAGE_KEY_TIME = "announcementClosedTime";
+
+	function isAnnouncementExpired(durationSeconds: number): boolean {
+		if (Number.isNaN(durationSeconds) || durationSeconds <= 0) {
+			return false;
+		}
+		const closedTime = localStorage.getItem(STORAGE_KEY_TIME);
+		if (!closedTime) {
+			return true;
+		}
+		const elapsedSeconds = (Date.now() - Number(closedTime)) / 1000;
+		return elapsedSeconds > durationSeconds;
+	}
+
+	function closeAnnouncement() {
+		const widgetLayouts = document.querySelectorAll<HTMLElement>(
+			'widget-layout[data-id="announcement"]',
+		);
+		if (widgetLayouts.length > 0) {
+			widgetLayouts.forEach((widget) => {
+				const container = widget.closest<HTMLElement>(".sidebar-widget") || widget;
+				container.style.display = "none";
+			});
+			localStorage.setItem(STORAGE_KEY_CLOSED, "true");
+			localStorage.setItem(STORAGE_KEY_TIME, Date.now().toString());
+		}
+	}
+
+	function checkAnnouncementClosed() {
+		const widgetLayouts = document.querySelectorAll<HTMLElement>(
+			'widget-layout[data-id="announcement"]',
+		);
+		if (widgetLayouts.length === 0) return;
+
+		const wrapper = document.querySelector<HTMLElement>(".announcement-wrapper");
+		const durationAttr = wrapper?.getAttribute("data-close-duration");
+		const durationSeconds = durationAttr ? Number.parseFloat(durationAttr) : 86400;
+
+		const isClosed = localStorage.getItem(STORAGE_KEY_CLOSED) === "true";
+		if (!isClosed) {
+			widgetLayouts.forEach((widget) => {
+				const container = widget.closest<HTMLElement>(".sidebar-widget") || widget;
+				container.style.display = "";
+				widget.style.display = "";
+			});
+			return;
+		}
+
+		if (isAnnouncementExpired(durationSeconds)) {
+			localStorage.removeItem(STORAGE_KEY_CLOSED);
+			localStorage.removeItem(STORAGE_KEY_TIME);
+			widgetLayouts.forEach((widget) => {
+				const container = widget.closest<HTMLElement>(".sidebar-widget") || widget;
+				container.style.display = "";
+				widget.style.display = "";
+			});
+		} else {
+			widgetLayouts.forEach((widget) => {
+				const container = widget.closest<HTMLElement>(".sidebar-widget") || widget;
+				container.style.display = "none";
+			});
+		}
+	}
+
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", checkAnnouncementClosed);
+	} else {
+		checkAnnouncementClosed();
+	}
+
+	document.addEventListener("swup:content:replace", checkAnnouncementClosed);
+
+	const globalObj = window as unknown as {
+		closeAnnouncement: () => void;
+		checkAnnouncementClosed: () => void;
+	};
+	globalObj.closeAnnouncement = closeAnnouncement;
+	globalObj.checkAnnouncementClosed = checkAnnouncementClosed;
+</script>

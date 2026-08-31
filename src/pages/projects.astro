@@ -1,0 +1,27 @@
+---
+/** 项目页：配置层规则在构建期结合数据层传入交互岛，路由负责开关与编排。 */
+import ProjectSection from "@components/organisms/ProjectSection.svelte";
+import I18nKey from "@i18n/i18nKey";
+import { i18n } from "@i18n/translation";
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+import { projectsConfig } from "@/config/projectsConfig";
+import { resolveProjectsData } from "@/utils/feature-data";
+
+if (!projectsConfig.enable) {
+	return Astro.redirect("/404/");
+}
+
+const items = resolveProjectsData(projectsConfig);
+---
+
+<MainGridLayout
+	title={i18n(I18nKey.projects)}
+	description={i18n(I18nKey.projectsBanner)}
+	page="projects"
+>
+	<ProjectSection
+		categories={projectsConfig.categories}
+		items={items}
+		client:visible
+	/>
+</MainGridLayout>

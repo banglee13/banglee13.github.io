@@ -1,0 +1,27 @@
+---
+/** 时间线页：配置层规则在构建期结合数据层传入交互岛，路由负责开关与编排。 */
+import TimelineSection from "@components/organisms/TimelineSection.svelte";
+import I18nKey from "@i18n/i18nKey";
+import { i18n } from "@i18n/translation";
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+import { timelineConfig } from "@/config/timelineConfig";
+import { resolveTimelineData } from "@/utils/feature-data";
+
+if (!timelineConfig.enable) {
+	return Astro.redirect("/404/");
+}
+
+const items = resolveTimelineData(timelineConfig);
+---
+
+<MainGridLayout
+	title={i18n(I18nKey.timeline)}
+	description={i18n(I18nKey.timelineBanner)}
+	page="timeline"
+>
+	<TimelineSection
+		categories={timelineConfig.categories}
+		items={items}
+		client:visible
+	/>
+</MainGridLayout>

@@ -1,0 +1,15 @@
+---
+/**
+ * 站点罗盘页：常用站点按分组陈列（本地数据源，构建期取得后交给客户端岛渲染；
+ * 搜索过滤 / 分组锚点滚动 / stagger 入场均为交互态）。
+ */
+import CompassSection from "@components/organisms/CompassSection.svelte";
+import I18nKey from "@i18n/i18nKey";
+import { i18n } from "@i18n/translation";
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+import { compassData } from "../data/compass";
+---
+
+<MainGridLayout title={i18n(I18nKey.compass)} description={i18n(I18nKey.compassBanner)} page="compass">
+    <CompassSection shelves={compassData} client:visible></CompassSection>
+</MainGridLayout>

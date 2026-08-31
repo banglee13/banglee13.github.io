@@ -1,0 +1,105 @@
+---
+import { getImage } from "astro:assets";
+import Button from "@components/atoms/action/Button.svelte";
+import IconButton from "@components/atoms/action/IconButton.svelte";
+import Avatar from "@components/atoms/display/Avatar.svelte";
+import Card from "@components/atoms/display/Card.svelte";
+import Tooltip from "@components/atoms/overlay/Tooltip.svelte";
+import UmamiStats from "@components/organisms/UmamiStats.astro";
+import { resolveImageAsset } from "@utils/asset-utils";
+import { Icon } from "astro-icon/components";
+import { profileConfig } from "@/config";
+import type { ProfileWidget } from "@/types/sidebarConfig";
+import { url } from "../../utils/url-utils";
+
+interface Props {
+	class?: string;
+	style?: string;
+	widget?: ProfileWidget;
+	priority?: boolean;
+}
+
+const className = Astro.props.class;
+const style = Astro.props.style;
+const priority = Astro.props.priority ?? false;
+
+const config = profileConfig;
+const avatarAsset = await resolveImageAsset(config.avatar ?? "");
+let avatarUrl = typeof avatarAsset === "string" ? avatarAsset : avatarAsset.src;
+let avatarSrcset: string | undefined;
+let avatarWidth: number | undefined;
+let avatarHeight: number | undefined;
+if (typeof avatarAsset !== "string") {
+	const widths = [128, 256, 384, 512].filter(
+		(width) => width <= avatarAsset.width,
+	);
+	const candidates = await Promise.all(
+		widths.map(async (width) => ({
+			width,
+			image: await getImage({
+				src: avatarAsset,
+				width,
+				format: "webp",
+				quality: 72,
+			}),
+		})),
+	);
+	avatarUrl =
+		candidates.find(({ width }) => width === 256)?.image.src ??
+		candidates.at(-1)?.image.src ??
+		avatarAsset.src;
+	avatarSrcset = candidates
+		.map(({ image, width }) => `${image.src} ${width}w`)
+		.join(", ");
+	avatarWidth = avatarAsset.width;
+	avatarHeight = avatarAsset.height;
+}
+---
+<div class={className} style={style}>
+	<Card color="var(--card-bg)" radius="l" class="p-3">
+    <a aria-label="Go to About Page" href={url('/about/')}
+       class="group block relative mx-auto mt-1 lg:mx-0 lg:mt-0 mb-3
+       max-w-[12rem] lg:max-w-none overflow-hidden rounded-xl active:scale-95">
+        <div class="absolute transition pointer-events-none group-hover:bg-black/30 group-active:bg-black/50
+        w-full h-full z-50 flex items-center justify-center">
+            <Icon name="fa6-regular:address-card"
+                  class="transition opacity-0 scale-90 group-hover:scale-100 group-hover:opacity-100 text-white text-5xl">
+            </Icon>
+        </div>
+        <Avatar
+            src={avatarUrl}
+			srcset={avatarSrcset}
+			sizes="(min-width: 1024px) 256px, 176px"
+			width={avatarWidth}
+			height={avatarHeight}
+			loading={priority ? "eager" : "lazy"}
+			fetchPriority={priority ? "high" : undefined}
+            alt="Profile Image of the Author"
+            size={176}
+            shape="rounded"
+            class="mx-auto lg:!w-full"
+        />
+    </a>
+    <div class="px-2">
+        <div class="font-bold text-xl text-center mb-1 text-90 transition">{config.name}</div>
+        <div class="h-1 w-5 bg-[var(--primary)] mx-auto rounded-full mb-2 transition"></div>
+        <div class="text-center text-50 mb-2.5 transition">{config.bio}</div>
+        <div class="flex flex-wrap gap-2 justify-center mb-1">
+            {config.links.length > 1 && config.links.map(item =>
+                <Tooltip label={item.name} placement="top" client:load>
+                    <IconButton href={item.url} target="_blank" rel="me" label={item.name}>
+                        <Icon name={item.icon} class="text-[1.5rem]"></Icon>
+                    </IconButton>
+                </Tooltip>
+            )}
+            {config.links.length == 1 && <Button href={config.links[0].url} target="_blank" ariaLabel={config.links[0].name}
+                                                 variant="text" size="small" class="!px-3 !font-bold !text-[var(--on-surface)]">
+                <Icon name={config.links[0].icon} class="text-[1.5rem]"></Icon>
+                {config.links[0].name}
+            </Button>}
+        </div>
+        <UmamiStats variant="profile" />
+    </div>
+	</Card>
+</div>
+

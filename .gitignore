@@ -1,0 +1,67 @@
+# build output
+dist/
+
+# content repository working copy, provenance, and safe cleanup backups
+.content-src/
+.content-backup/
+content.lock.json
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+.vercel
+
+package-lock.json
+bun.lockb
+yarn.lock
+
+# ide
+.idea
+
+# generated font subsets
+src/assets/fonts/.subset/
+*.iml
+
+# anime snapshot data & downloaded covers
+src/data/anime-snapshots/*.json
+public/assets/anime/covers/*
+!public/assets/anime/covers/.gitkeep
+
+# generated responsive moment thumbnails
+public/assets/moments/thumbnails/*
+!public/assets/moments/thumbnails/.gitkeep
+
+# local tooling artifacts
+.zcode/
+.codex-*.log
+research/
+
+# playwright
+.playwright-cli/
+test-results/
+playwright-report/
+tests/site/visual.spec.ts-snapshots/
+
+# Lighthouse local reports
+artifacts/lighthouse/*
+!artifacts/lighthouse/.gitkeep
+.lighthouseci/
+
+# generated AI skills plugin packages
+artifacts/shirone-ai-*
