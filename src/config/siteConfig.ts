@@ -13,7 +13,7 @@ export const siteConfig: SiteConfig = withUserConfig("site", {
 	site: "https://banglee13.github.io/",
 	base: "/",
 	title: "banglee's blog",
-	subtitle: "A Material 3 anime blog",
+	subtitle: "",
 	// 电脑端顶栏标题与导航内容区域："left" 左对齐，"center" 居中。
 	topAppBar: {
 		contentAlign: "center",
@@ -57,8 +57,8 @@ export const siteConfig: SiteConfig = withUserConfig("site", {
 		// desktop 用于 >= 1024px；mobile 仅用于 < 1024px 的首页，手机非首页不显示壁纸。
 		// 数组顺序就是轮播顺序；只需要静态 Banner 时，每组保留一张图片即可。
 		src: {
-			desktop: ["assets/images/banner/desktop/1.webp"],
-			mobile: ["assets/images/banner/mobile/1.webp"],
+			desktop: ["assets/images/banner/desktop/1.jpg"],
+			mobile: ["assets/images/banner/mobile/1.jpg"],
 		},
 		// 图片裁切焦点："top"、"center" 或 "bottom"。
 		position: "center",
@@ -70,13 +70,17 @@ export const siteConfig: SiteConfig = withUserConfig("site", {
 		homeText: {
 			// 仅在首页 Banner 中显示，标题与副标题会上下居中排列。
 			enable: true,
-			title: "Shirone",
+			title: "banglee's blog",
 			subtitle: [
-				"特別なことはないけど、君がいると十分です",
-				"今でもあなたは私の光",
-				"君ってさ、知らないうちに私の毎日になってたよ",
-				"君と話すと、なんか毎日がちょっと楽しくなるんだ",
-				"今日はなんでもない日。でも、ちょっとだけいい日",
+				"春よ、もうすぐ来る",
+				"君のいない春が、来る",
+				"10年君を愛してた。でもたった1つの4月で、君を愛してないという嘘を紡いだ", //四月是你的谎言
+				"爆ぜろリアル！弾けろシナプス！バニッシュメント・ディス・ワールド！",
+				"たとえ世界中を敵に回しても、俺はお前の味方でいる", //中二病也要谈恋爱
+				"扉の向こうに、時間があった", //铃芽之旅
+				"空よりも、君を選ぶ", //天气之子
+				"世界は美しい",
+				"どんなに先がどうなっても、私との出会いを後悔しないで", //clannad
 			],
 			typewriter: {
 				// 副标题逐字显示；关闭后直接显示完整副标题。

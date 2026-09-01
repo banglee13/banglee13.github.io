@@ -58,7 +58,7 @@ export const animeConfig: AnimeConfig = withUserConfig("anime", {
 	/** 外部提供方配置 */
 	providers: {
 		bangumi: {
-			enable: false,
+			enable: true,
 			userId: "1266350", // 填入你的 Bangumi 数字 UID 或公开用户名（测试可填 "sai"）
 			request: {
 				pageSize: 50,

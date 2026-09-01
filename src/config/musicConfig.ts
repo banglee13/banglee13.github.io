@@ -62,7 +62,7 @@ export const musicConfig: MusicConfig = withUserConfig("music", {
 	meting: {
 		server: "netease",
 		type: "playlist",
-		id: "12211755446",
+		id: "12345844334",
 	},
 	defaultVolume: 0.7,
 	defaultMode: "sequence",
