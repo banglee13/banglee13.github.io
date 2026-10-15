@@ -2,6 +2,7 @@
 title: "题解：AT_abc473_e [ABC473E] K-Divisible Subarrays"
 published: 2026-08-31
 publishedAt: 2026-08-31T15:26:12+08:00
+category: "题解"
 draft: false
 ---
 

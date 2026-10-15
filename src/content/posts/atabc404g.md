@@ -2,6 +2,7 @@
 title: "题解：AT_abc404_g [ABC404G] Specified Range Sums"
 published: 2026-07-20
 publishedAt: 2026-07-20T21:03:38+08:00
+category: "题解"
 draft: false
 ---
 

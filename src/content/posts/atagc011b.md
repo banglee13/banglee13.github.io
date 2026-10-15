@@ -2,6 +2,7 @@
 title: "题解：AT_agc011_b [AGC011B] Colorful Creatures"
 published: 2024-05-23
 publishedAt: 2024-05-23T17:34:19+08:00
+category: "题解"
 draft: false
 ---
 

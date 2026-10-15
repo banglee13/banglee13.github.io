@@ -2,6 +2,7 @@
 title: "题解：AT_otemae2019_c カード並べ 2 (Arranging Card 2)"
 published: 2024-11-20
 publishedAt: 2024-11-20T14:01:29+08:00
+category: "题解"
 draft: false
 ---
 

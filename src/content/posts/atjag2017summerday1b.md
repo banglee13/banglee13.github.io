@@ -2,6 +2,7 @@
 title: "题解：AT_jag2017summer_day1_b リス"
 published: 2024-09-18
 publishedAt: 2024-09-18T13:57:28+08:00
+category: "题解"
 draft: false
 ---
 

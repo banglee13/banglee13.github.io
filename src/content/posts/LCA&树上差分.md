@@ -2,6 +2,7 @@
 title: "LCA&树上差分"
 published: 2025-08-14
 publishedAt: 2025-08-14T19:26:31+08:00
+category: "总结"
 draft: false
 ---
 

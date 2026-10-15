@@ -2,6 +2,7 @@
 title: "题解：AT_abc460_c [ABC460C] Sushi"
 published: 2026-05-31
 publishedAt: 2026-05-31T14:14:37+08:00
+category: "题解"
 draft: false
 ---
 

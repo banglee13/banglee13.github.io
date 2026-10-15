@@ -2,6 +2,7 @@
 title: "题解：AT_abc471_c [ABC471C] Cookies and Greedy Takahashi"
 published: 2026-08-16
 publishedAt: 2026-08-16T08:34:59+08:00
+category: "题解"
 draft: false
 ---
 

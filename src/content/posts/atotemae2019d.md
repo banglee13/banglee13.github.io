@@ -2,6 +2,7 @@
 title: "题解：AT_otemae2019_d FizzBuzz (FizzBuzz)"
 published: 2025-04-01
 publishedAt: 2025-04-01T13:55:38+08:00
+category: "题解"
 draft: false
 ---
 

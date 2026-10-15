@@ -2,6 +2,7 @@
 title: "题解：AT_abc473_d [ABC473D] Coefficient Stair"
 published: 2026-08-31
 publishedAt: 2026-08-31T15:25:30+08:00
+category: "题解"
 draft: false
 ---
 

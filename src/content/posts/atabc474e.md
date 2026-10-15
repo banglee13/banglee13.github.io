@@ -2,6 +2,7 @@
 title: "题解：AT_abc474_e One Time Coupon"
 published: 2026-09-09
 publishedAt: 2026-09-09T15:38:35+08:00
+category: "题解"
 draft: false
 ---
 

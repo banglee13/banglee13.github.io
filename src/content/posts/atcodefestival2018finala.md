@@ -2,6 +2,7 @@
 title: "题解：AT_code_festival_2018_final_a 2540"
 published: 2024-04-20
 publishedAt: 2024-04-20T15:02:17+08:00
+category: "题解"
 draft: false
 ---
 

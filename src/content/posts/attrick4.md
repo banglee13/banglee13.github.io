@@ -2,6 +2,7 @@
 title: "题解：AT_tricky_4 高橋くんレーシング"
 published: 2025-04-25
 publishedAt: 2025-04-25T13:26:19+08:00
+category: "题解"
 draft: false
 ---
 

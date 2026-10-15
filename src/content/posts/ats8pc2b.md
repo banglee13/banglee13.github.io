@@ -2,6 +2,7 @@
 title: "题解：AT_s8pc_2_b Division 2"
 published: 2024-11-12
 publishedAt: 2024-11-12T13:43:44+08:00
+category: "题解"
 draft: false
 ---
 

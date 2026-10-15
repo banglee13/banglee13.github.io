@@ -2,6 +2,7 @@
 title: "ABC232G 建图优化"
 published: 2026-04-18
 publishedAt: 2026-04-18T09:49:22+08:00
+category: "题解"
 draft: false
 ---
 

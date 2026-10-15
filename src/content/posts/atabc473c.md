@@ -2,6 +2,7 @@
 title: "题解：AT_abc473_c [ABC473C] Change Schools"
 published: 2026-08-31
 publishedAt: 2026-08-31T15:25:12+08:00
+category: "题解"
 draft: false
 ---
 

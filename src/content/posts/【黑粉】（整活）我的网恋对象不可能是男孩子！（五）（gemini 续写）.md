@@ -2,6 +2,7 @@
 title: "【黑粉】（整活）我的网恋对象不可能是男孩子！（五）（gemini 续写）"
 published: 2026-01-21
 publishedAt: 2026-01-21T13:37:24+08:00
+category: "娱乐"
 draft: false
 ---
 

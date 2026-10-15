@@ -2,6 +2,7 @@
 title: "题解：AT_pakencamp_2021_day2_g 進撃のパ研"
 published: 2024-10-31
 publishedAt: 2024-10-31T17:46:13+08:00
+category: "题解"
 draft: false
 ---
 

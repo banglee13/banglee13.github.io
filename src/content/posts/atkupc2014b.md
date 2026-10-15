@@ -2,6 +2,7 @@
 title: "题解：AT_kupc2014_b 数当てゲーム"
 published: 2024-05-23
 publishedAt: 2024-05-23T17:52:07+08:00
+category: "题解"
 draft: false
 ---
 

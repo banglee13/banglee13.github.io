@@ -2,6 +2,7 @@
 title: "题解：AT_ttpc2015_c おおおかやま"
 published: 2025-11-10
 publishedAt: 2025-11-10T13:01:30+08:00
+category: "题解"
 draft: false
 ---
 

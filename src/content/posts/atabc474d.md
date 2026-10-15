@@ -2,6 +2,7 @@
 title: "题解：AT_abc474_d [ABC474D] Outweigh"
 published: 2026-09-07
 publishedAt: 2026-09-07T16:09:50+08:00
+category: "题解"
 draft: false
 ---
 

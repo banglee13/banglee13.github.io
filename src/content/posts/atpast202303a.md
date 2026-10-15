@@ -2,6 +2,7 @@
 title: "题解：AT_past202303_a シンプル石取りゲーム"
 published: 2025-12-25
 publishedAt: 2025-12-25T09:25:35+08:00
+category: "题解"
 draft: false
 ---
 

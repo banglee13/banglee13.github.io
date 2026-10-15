@@ -2,6 +2,7 @@
 title: "题解：AT_abc453_c [ABC453C] Sneaking Glances"
 published: 2026-04-13
 publishedAt: 2026-04-13T09:45:01+08:00
+category: "题解"
 draft: false
 ---
 

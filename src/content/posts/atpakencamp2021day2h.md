@@ -2,6 +2,7 @@
 title: "题解：AT_pakencamp_2021_day2_h PuraPrime"
 published: 2025-03-24
 publishedAt: 2025-03-24T13:57:23+08:00
+category: "题解"
 draft: false
 ---
 

@@ -2,6 +2,7 @@
 title: "题解：AT_past202309_j 除夜の鐘"
 published: 2026-05-15
 publishedAt: 2026-05-15T13:23:13+08:00
+category: "题解"
 draft: false
 ---
 

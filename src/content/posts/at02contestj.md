@@ -2,6 +2,7 @@
 title: "[AT1202Contest_j] Hated Number 题解"
 published: 2024-02-07
 publishedAt: 2024-02-07T17:11:23+08:00
+category: "题解"
 draft: false
 ---
 

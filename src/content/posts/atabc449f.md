@@ -2,6 +2,7 @@
 title: "题解：AT_abc449_f [ABC449F] Grid Clipping"
 published: 2026-03-19
 publishedAt: 2026-03-19T13:44:08+08:00
+category: "题解"
 draft: false
 ---
 

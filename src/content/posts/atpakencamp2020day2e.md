@@ -2,6 +2,7 @@
 title: "题解：AT_pakencamp_2020_day2_e 老朽化対策"
 published: 2025-03-06
 publishedAt: 2025-03-06T13:08:39+08:00
+category: "题解"
 draft: false
 ---
 

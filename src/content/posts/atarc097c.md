@@ -2,6 +2,7 @@
 title: "题解：AT_arc097_c [ARC097E] Sorted and Sorted"
 published: 2026-07-17
 publishedAt: 2026-07-17T07:47:57+08:00
+category: "题解"
 draft: false
 ---
 

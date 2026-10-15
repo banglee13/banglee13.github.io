@@ -2,6 +2,7 @@
 title: "题解：AT_yahoo_procon2018_final_c 木の問題"
 published: 2024-05-28
 publishedAt: 2024-05-28T17:28:12+08:00
+category: "题解"
 draft: false
 ---
 

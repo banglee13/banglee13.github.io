@@ -2,6 +2,7 @@
 title: "题解：AT_yahoo_procon2018_final_b 経路が色々"
 published: 2024-05-27
 publishedAt: 2024-05-27T09:19:24+08:00
+category: "题解"
 draft: false
 ---
 

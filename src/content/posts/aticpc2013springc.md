@@ -2,6 +2,7 @@
 title: "题解：AT_icpc2013spring_c Iyasugigappa"
 published: 2024-11-05
 publishedAt: 2024-11-05T13:43:13+08:00
+category: "题解"
 draft: false
 ---
 

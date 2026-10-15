@@ -2,6 +2,7 @@
 title: "题解：AT_nikkei2019_final_d Deforestation"
 published: 2024-10-29
 publishedAt: 2024-10-29T17:54:22+08:00
+category: "题解"
 draft: false
 ---
 

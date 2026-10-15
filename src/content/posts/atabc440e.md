@@ -2,6 +2,7 @@
 title: "题解：AT_abc440_e [ABC440E] Cookies"
 published: 2026-01-13
 publishedAt: 2026-01-13T13:20:34+08:00
+category: "题解"
 draft: false
 ---
 

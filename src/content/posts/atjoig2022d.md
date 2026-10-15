@@ -2,6 +2,7 @@
 title: "题解：AT_joig2022_d いちご 2 (Strawberry 2)"
 published: 2026-02-11
 publishedAt: 2026-02-11T16:27:44+08:00
+category: "题解"
 draft: false
 ---
 

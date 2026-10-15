@@ -2,6 +2,7 @@
 title: "题解：AT_abc474_c Remove and Append"
 published: 2026-09-07
 publishedAt: 2026-09-07T10:18:37+08:00
+category: "题解"
 draft: false
 ---
 

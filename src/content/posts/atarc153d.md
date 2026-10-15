@@ -2,6 +2,7 @@
 title: "题解：AT_arc153_d [ARC153D] Sum of Sum of Digits"
 published: 2026-02-07
 publishedAt: 2026-02-07T11:31:38+08:00
+category: "题解"
 draft: false
 ---
 

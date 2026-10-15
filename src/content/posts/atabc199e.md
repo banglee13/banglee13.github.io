@@ -2,6 +2,7 @@
 title: "题解：AT_abc199_e [ABC199E] Permutation"
 published: 2026-03-20
 publishedAt: 2026-03-20T13:28:33+08:00
+category: "题解"
 draft: false
 ---
 

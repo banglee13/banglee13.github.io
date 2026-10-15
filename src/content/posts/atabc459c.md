@@ -2,6 +2,7 @@
 title: "题解：AT_abc459_c [ABC459C] Drop Blocks"
 published: 2026-05-25
 publishedAt: 2026-05-25T14:02:01+08:00
+category: "题解"
 draft: false
 ---
 

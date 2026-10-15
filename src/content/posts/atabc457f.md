@@ -2,6 +2,7 @@
 title: "题解：AT_abc457_f [ABC457F] Second Gap"
 published: 2026-05-11
 publishedAt: 2026-05-11T13:27:38+08:00
+category: "题解"
 draft: false
 ---
 

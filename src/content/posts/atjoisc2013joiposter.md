@@ -2,6 +2,7 @@
 title: "题解：AT_joisc2013_joi_poster JOIポスター (JOI Poster)"
 published: 2025-11-08
 publishedAt: 2025-11-08T15:31:27+08:00
+category: "题解"
 draft: false
 ---
 

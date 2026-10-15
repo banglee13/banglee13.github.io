@@ -2,6 +2,7 @@
 title: "题解：AT_s8pc_6_c Infinite Grid"
 published: 2025-02-04
 publishedAt: 2025-02-04T14:59:43+08:00
+category: "题解"
 draft: false
 ---
 

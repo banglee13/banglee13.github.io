@@ -2,6 +2,7 @@
 title: "[AT1202Contest_a] DEGwer's Doctoral Dissertation 题解"
 published: 2023-12-08
 publishedAt: 2023-12-08T21:33:10+08:00
+category: "题解"
 draft: false
 ---
 

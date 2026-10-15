@@ -2,6 +2,7 @@
 title: "题解：AT_abc405_c [ABC405C] Sum of Product"
 published: 2025-05-13
 publishedAt: 2025-05-13T13:05:36+08:00
+category: "题解"
 draft: false
 ---
 

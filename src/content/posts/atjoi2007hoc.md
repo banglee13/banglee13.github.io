@@ -2,6 +2,7 @@
 title: "题解：AT_joi2007ho_c 最古の遺跡"
 published: 2024-09-05
 publishedAt: 2024-09-05T13:25:37+08:00
+category: "题解"
 draft: false
 ---
 

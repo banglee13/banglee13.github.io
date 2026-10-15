@@ -2,6 +2,7 @@
 title: "题解：AT_snuke21_f Lake"
 published: 2025-04-06
 publishedAt: 2025-04-06T16:20:45+08:00
+category: "题解"
 draft: false
 ---
 

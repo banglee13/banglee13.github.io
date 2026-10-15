@@ -2,6 +2,7 @@
 title: "题解：AT_code_festival_2018_qualb_c Special Cake for CODE FESTIVAL"
 published: 2024-05-20
 publishedAt: 2024-05-20T17:39:39+08:00
+category: "题解"
 draft: false
 ---
 

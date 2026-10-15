@@ -2,6 +2,7 @@
 title: "题解：AT_jag2017summer_day3_c Ninja Map"
 published: 2025-02-26
 publishedAt: 2025-02-26T13:21:46+08:00
+category: "题解"
 draft: false
 ---
 

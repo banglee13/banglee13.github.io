@@ -2,6 +2,7 @@
 title: "题解：AT_jag2017summer_day1_a しりとり"
 published: 2024-09-13
 publishedAt: 2024-09-13T17:14:33+08:00
+category: "题解"
 draft: false
 ---
 

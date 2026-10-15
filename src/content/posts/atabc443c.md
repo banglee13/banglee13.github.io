@@ -2,6 +2,7 @@
 title: "题解：AT_abc443_c [ABC443C] Chokutter Addiction"
 published: 2026-02-01
 publishedAt: 2026-02-01T14:24:20+08:00
+category: "题解"
 draft: false
 ---
 

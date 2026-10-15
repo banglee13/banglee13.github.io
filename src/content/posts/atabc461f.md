@@ -2,6 +2,7 @@
 title: "题解：AT_abc461_f [ABC461F] Total Product is N"
 published: 2026-06-08
 publishedAt: 2026-06-08T12:36:02+08:00
+category: "题解"
 draft: false
 ---
 

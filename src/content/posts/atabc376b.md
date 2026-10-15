@@ -2,6 +2,7 @@
 title: "题解：AT_abc376_b [ABC376B] Hands on Ring (Easy)"
 published: 2025-10-26
 publishedAt: 2025-10-26T21:02:59+08:00
+category: "题解"
 draft: false
 ---
 

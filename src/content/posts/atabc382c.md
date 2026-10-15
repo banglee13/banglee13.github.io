@@ -2,6 +2,7 @@
 title: "题解：AT_abc382_c [ABC382C] Kaiten Sushi"
 published: 2024-12-02
 publishedAt: 2024-12-02T13:32:02+08:00
+category: "题解"
 draft: false
 ---
 
