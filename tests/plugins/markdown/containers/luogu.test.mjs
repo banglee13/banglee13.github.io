@@ -10,14 +10,26 @@ async function render(markdown) {
 }
 
 test("merges table cells upward and to the left", async () => {
-	const html = await render(`| Group | Value |
-| --- | --- |
-| A | 10 |
-| ^ | < |`);
+	const { code: html, metadata } = await renderer.render(`| Group | Value | Note | Extra |
+| --- | --- | --- | --- |
+| A | 10 | X | Y |
+| ^ | 20 | < | < |`);
 
 	assert.match(html, /<td rowspan="2">A<\/td>/);
-	assert.match(html, /<td>10<\/td>/);
+	assert.deepEqual(metadata.frontmatter.markdownSyntaxes.syntaxes, ["table-span"]);
+	assert.match(html, /<td colspan="3">20<\/td>/);
 	assert.doesNotMatch(html, />\^<|>&lt;<\/td>/);
+});
+
+test("extends a rectangular span once and preserves an incomplete continuation", async () => {
+	const html = await render(`| First | Second | Third |
+| --- | --- | --- |
+| Group | < | One |
+| ^ | ^ | Two |
+| ^ | Other | Three |`);
+
+	assert.match(html, /<td colspan="2" rowspan="2">Group<\/td>/);
+	assert.match(html, /<td>\^<\/td><td>Other<\/td>/);
 });
 
 test("renders Tuack table, centered content, and epigraph as SSR markup", async () => {
@@ -37,7 +49,10 @@ Centered text.
 Quoted text.
 :::`);
 
-	assert.match(html, /class="m3-luogu-tuack-table"[^>]*>\s*<table>/);
+	assert.match(
+		html,
+		/class="m3-luogu-tuack-table">\s*<div class="markdown-table-scroll"[^>]*>\s*<table>/,
+	);
 	assert.match(html, /class="m3-luogu-align-center"/);
 	assert.match(html, /<figure class="m3-luogu-epigraph">/);
 	assert.match(html, /<figcaption>——author<\/figcaption>/);
@@ -78,5 +93,5 @@ Unchanged.
 
 	assert.match(html, /<td>\^ as text<\/td>/);
 	assert.doesNotMatch(html, /m3-luogu-align-center/);
-	assert.match(html, /<div class="align" align="right">/);
+	assert.match(html, /<align right="">/);
 });

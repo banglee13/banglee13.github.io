@@ -128,18 +128,10 @@ export function remarkFeatureProbes() {
 				syntaxes.add("callfold");
 			}
 			if (
-				node.type === "table" &&
-				node.children.some((row) =>
-					row.children?.some((cell) =>
-						cell.children?.some((child) =>
-							child.children?.some(
-								(text) =>
-									text.type === "text" &&
-									["^", "<"].includes(text.value.trim()),
-							),
-						),
-					),
-				)
+				node.type === "tableCell" &&
+				node.children.length === 1 &&
+				node.children[0].type === "text" &&
+				["^", "<"].includes(node.children[0].value.trim())
 			) {
 				syntaxes.add("table-span");
 			}
