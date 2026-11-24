@@ -1,0 +1,40 @@
+.custom-md details.m3-luogu-callfold {
+	margin-block: var(--m3e-space-4);
+	border: 1px solid var(--outline-variant);
+	border-inline-start: var(--m3e-space-1) solid var(--primary);
+	border-radius: var(--shape-corner-l);
+	background: var(--surface-container-low);
+	color: var(--on-surface);
+}
+
+.custom-md .m3-luogu-callfold > .m3-admonition__header {
+	display: grid;
+	grid-template-columns: var(--m3e-space-2) minmax(0, 1fr) var(--m3e-space-4);
+	align-items: center;
+	gap: var(--m3e-space-3);
+	min-height: calc(var(--m3e-space-8) + var(--m3e-space-2));
+	padding: var(--m3e-space-2) var(--m3e-space-4);
+	cursor: pointer;
+	list-style: none;
+}
+
+.custom-md .m3-luogu-callfold > .m3-admonition__header::-webkit-details-marker {
+	display: none;
+}
+
+.custom-md .m3-luogu-callfold > .m3-admonition__header::marker {
+	content: "";
+}
+
+.custom-md .m3-luogu-callfold .m3-admonition__title {
+	font: var(--m3e-type-title-medium);
+}
+
+.custom-md .m3-luogu-callfold .m3-admonition__body {
+	padding: 0 var(--m3e-space-4) var(--m3e-space-4);
+}
+
+.custom-md .m3-luogu-callfold[open] > .m3-admonition__body {
+	padding-top: var(--m3e-space-3);
+	border-top: 1px solid var(--outline-variant);
+}

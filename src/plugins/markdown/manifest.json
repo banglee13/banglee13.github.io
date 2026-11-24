@@ -14,8 +14,8 @@
 		},
 		{
 			"id": "admonitions",
-			"syntaxes": ["admonition"],
-			"styles": ["src/styles/markdown/admonitions.css"]
+			"syntaxes": ["admonition", "callfold"],
+			"styles": ["src/styles/markdown/admonitions.css", "src/styles/markdown/luogu-callfold.css"]
 		},
 		{
 			"id": "artplayer",
@@ -66,6 +66,11 @@
 			"id": "image-presentations",
 			"syntaxes": ["image-presentation"],
 			"styles": ["src/styles/markdown/image-presentations.css"]
+		},
+		{
+			"id": "luogu-markdown",
+			"syntaxes": ["align-center", "epigraph", "table-span", "tuack-table"],
+			"styles": ["src/styles/markdown/luogu.css"]
 		},
 		{
 			"id": "marker",
@@ -285,6 +290,43 @@
 				"details 使用原生 disclosure，无 hydration、客户端模块或网络请求。"
 			]
 		},
+			{
+		"id": "align-center",
+		"name": "Luogu Center Alignment",
+		"status": "stable",
+		"category": "container",
+		"source": "integration",
+		"summary": "使用 :::align{center} 将内容居中排版。",
+		"forms": [
+			{
+				"kind": "container-directive",
+				"pattern": ":::align{center} ... :::",
+				"example": ":::align{center}\n居中内容\n:::"
+			}
+		],
+		"attributes": [],
+		"implementation": [
+			"src/plugins/markdown/remark-luogu.mjs"
+		],
+		"registeredIn": "src/utils/markdown-processor.mjs",
+		"styles": [
+			"src/styles/markdown/luogu.css"
+		],
+		"runtime": {
+			"mode": "none",
+			"modules": [],
+			"network": []
+		},
+		"docs": [
+			"docs/markdown-extensions.md"
+		],
+		"tests": [
+			"tests/plugins/markdown/containers/luogu.test.mjs"
+		],
+		"notes": [
+			"SSR 输出原生 div。"
+		]
+	},
 		{
 			"id": "artplayer",
 			"name": "ArtPlayer Video",
@@ -467,6 +509,52 @@
 				"非法 BV 号、空标题或非法分 P 不触发可选资源；运行时只从验证后的字段生成白名单播放器 URL。"
 			]
 		},
+			{
+		"id": "callfold",
+		"name": "Luogu Callfold",
+		"status": "stable",
+		"category": "container",
+		"source": "integration",
+		"summary": "使用四冒号提示容器输出原生折叠框。",
+		"forms": [
+			{
+				"kind": "container-directive",
+				"pattern": "::::<info|success|warning|error>[标题]{open} ... :::: ",
+				"example": "::::info[更多信息]\n折叠正文。\n::::"
+			}
+		],
+		"attributes": [
+			{
+				"name": "open",
+				"required": false,
+				"values": "boolean directive flag",
+				"default": false
+			}
+		],
+		"implementation": [
+			"src/plugins/markdown/remark-admonitions.mjs",
+			"src/plugins/rehype-component-admonition.mjs"
+		],
+		"registeredIn": "src/utils/markdown-processor.mjs",
+		"styles": [
+			"src/styles/markdown/luogu-callfold.css",
+			"src/styles/markdown/admonitions.css"
+		],
+		"runtime": {
+			"mode": "native",
+			"modules": [],
+			"network": []
+		},
+		"docs": [
+			"docs/markdown-extensions.md"
+		],
+		"tests": [
+			"tests/plugins/markdown/containers/luogu.test.mjs"
+		],
+		"notes": [
+			"{open} 使折叠框默认展开。"
+		]
+	},
 		{
 			"id": "code-tree",
 			"name": "Code Tree",
@@ -654,6 +742,43 @@
 				"桌面与手机端均优先锚定到对应引用，空间不足时翻转；不使用手机端固定底部面板。"
 			]
 		},
+			{
+		"id": "epigraph",
+		"name": "Luogu Epigraph",
+		"status": "stable",
+		"category": "container",
+		"source": "integration",
+		"summary": "使用 :::epigraph[署名] 输出带署名的引言。",
+		"forms": [
+			{
+				"kind": "container-directive",
+				"pattern": ":::epigraph[署名] ... :::",
+				"example": ":::epigraph[——作者]\n引言正文。\n:::"
+			}
+		],
+		"attributes": [],
+		"implementation": [
+			"src/utils/markdown-processor.mjs"
+		],
+		"registeredIn": "src/utils/markdown-processor.mjs",
+		"styles": [
+			"src/styles/markdown/luogu.css"
+		],
+		"runtime": {
+			"mode": "none",
+			"modules": [],
+			"network": []
+		},
+		"docs": [
+			"docs/markdown-extensions.md"
+		],
+		"tests": [
+			"tests/plugins/markdown/containers/luogu.test.mjs"
+		],
+		"notes": [
+			"SSR 输出 figure 与可选 figcaption。"
+		]
+	},
 		{
 			"id": "expressive-code",
 			"name": "Expressive Code fence metadata",
@@ -1276,6 +1401,87 @@
 				"容器只接受一个有序列表；视觉序号附带 aria-hidden，原始 ol/li 语义保留，纯 SSR 输出且零客户端 JavaScript 负担。"
 			]
 		},
+			{
+		"id": "table-span",
+		"name": "Luogu Table Spans",
+		"status": "stable",
+		"category": "container",
+		"source": "shirone",
+		"summary": "使用 ^ 向上合并、< 向左合并表格单元格。",
+		"forms": [
+			{
+				"kind": "container-directive",
+				"pattern": "表格单元格内独占的 ^ 或 <",
+				"example": "| A | B |\n| - | - |\n| ^ | < |"
+			}
+		],
+		"attributes": [],
+		"implementation": [
+			"src/plugins/rehype-luogu-table-spans.mjs"
+		],
+		"registeredIn": "src/utils/markdown-processor.mjs",
+		"styles": [
+			"src/styles/markdown/luogu.css"
+		],
+		"runtime": {
+			"mode": "none",
+			"modules": [],
+			"network": []
+		},
+		"docs": [
+			"docs/markdown-extensions.md"
+		],
+		"tests": [
+			"tests/plugins/markdown/containers/luogu.test.mjs"
+		],
+		"notes": [
+			"仅转换纯文本标记单元格。"
+		]
+	},
+			{
+		"id": "tuack-table",
+		"name": "Luogu Tuack Table",
+		"status": "stable",
+		"category": "leaf-directive",
+		"source": "shirone",
+		"summary": "使用 ::cute-table{tuack} 设置后续表格样式。",
+		"forms": [
+			{
+				"kind": "leaf-directive",
+				"pattern": "::cute-table{tuack} 后接 Markdown 表格",
+				"example": "::cute-table{tuack}\n\n| 测试点 | 数值 |"
+			}
+		],
+		"attributes": [
+			{
+				"name": "tuack",
+				"required": true,
+				"values": "empty flag",
+				"default": null
+			}
+		],
+		"implementation": [
+			"src/plugins/markdown/remark-luogu.mjs"
+		],
+		"registeredIn": "src/utils/markdown-processor.mjs",
+		"styles": [
+			"src/styles/markdown/luogu.css"
+		],
+		"runtime": {
+			"mode": "none",
+			"modules": [],
+			"network": []
+		},
+		"docs": [
+			"docs/markdown-extensions.md"
+		],
+		"tests": [
+			"tests/plugins/markdown/containers/luogu.test.mjs"
+		],
+		"notes": [
+			"标记只作用于紧随其后的表格。"
+		]
+	},
 		{
 			"id": "youtube",
 			"name": "YouTube Video",

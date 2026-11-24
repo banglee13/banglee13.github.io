@@ -1,6 +1,7 @@
 import { visit } from "unist-util-visit";
 
-const ADMONITION_TYPES = "note|info|tip|important|warning|caution|details";
+const ADMONITION_TYPES =
+	"note|info|tip|important|warning|caution|details|success|error";
 const GITHUB_ALERT = /^\s*\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*$/i;
 const CONTAINER_OPENER = new RegExp(
 	`^([\\t ]{0,3})(:{3,})[\\t ]*(${ADMONITION_TYPES})(?![\\w-])(.*)$`,
@@ -48,7 +49,12 @@ export function rewriteAdmonitionContainers(source) {
 
 			const [, indent, marker, rawType, rawSuffix] = match;
 			const type = rawType.toLowerCase();
-			const directiveName = type === "details" ? "admonition-details" : type;
+			const directiveName =
+				marker.length >= 4
+					? `callfold-${type}`
+					: type === "details"
+						? "admonition-details"
+						: type;
 			const suffix = rawSuffix.trim();
 			if (!suffix) return `${indent}${marker}${directiveName}`;
 			if (suffix.startsWith("[") || suffix.startsWith("{")) {

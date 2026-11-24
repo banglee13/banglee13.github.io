@@ -48,15 +48,18 @@ export function AdmonitionComponent(properties, children, type) {
 	const fallbackTitle = title || type.toUpperCase();
 	const renderedTitle = titleNodes(label, fallbackTitle);
 	const rootProperties = {
-		class: `admonition bdm-${type} m3-admonition not-prose`,
+		class: `admonition bdm-${type} m3-admonition not-prose${properties.callfold ? " m3-luogu-callfold" : ""}`,
 		"data-admonition": type,
 	};
 	const body = content.length
 		? h("div", { class: "m3-admonition__body" }, content)
 		: null;
 
-	if (type === "details") {
-		return h("details", rootProperties, [
+	if (type === "details" || properties.callfold) {
+		return h("details", {
+			...rootProperties,
+			...(properties.open ? { open: true } : {}),
+		}, [
 			h("summary", { class: "m3-admonition__header m3-state-layer" }, [
 				renderIndicator(),
 				h("span", { class: "bdm-title m3-admonition__title" }, renderedTitle),

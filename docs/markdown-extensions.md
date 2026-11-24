@@ -150,6 +150,41 @@ Bun 对应的完整 Markdown 正文。
 
 SSR 输出不会预先隐藏任何面板，并重复输出每个面板标题，因此脚本不可用时仍能连续阅读全文。客户端模块只在页面实际包含 `.m3-option-group` 时动态加载，增强后才隐藏非活动面板并启用点击、方向键、Home/End、ARIA 状态、同 id 同步与记忆。初始化覆盖直接加载、Swup 内容替换和加密文章解锁；不使用 hydration、第三方依赖或网络请求。组件根节点使用 `not-prose`，选项栏保持单行并在自身范围内横向滑动；长标题截断但标签仍可点击，键盘切换只滚动该选项栏。窄屏边界和打印展开由 `markdown/option-groups.css` 完整拥有。独立演示页位于 `src/content/posts/option-groups.md`。
 
+### 3.6 洛谷 Markdown 语法
+
+博客兼容洛谷手册中的表格合并、Tuack 表格、居中排版、引言和折叠框语法：
+
+```markdown
+| 分组 | 数值 |
+| --- | --- |
+| A | 10 |
+| ^ | < |
+
+::cute-table{tuack}
+
+| 测试点 | 限制 |
+| :-: | :-: |
+| 1 | 10^5 |
+
+:::align{center}
+居中内容
+:::
+
+:::epigraph[——作者]
+引言内容。
+:::
+
+::::info[更多信息]
+点击标题展开内容。
+::::
+
+::::success[已完成]{open}
+该折叠框默认展开。
+::::
+```
+
+表格标记必须独占单元格。`^` 合并到上一行的对应单元格，`<` 合并到左侧单元格。Tuack 标记只修饰紧随其后的 Markdown 表格。居中容器使用 `div`，引言使用 `figure` 和可选署名 `figcaption`。四冒号折叠框使用原生 `details`/`summary`，支持 `info`、`success`、`warning`、`error` 以及 `{open}`。这些语法均在构建期生成 HTML，条件样式只在文章命中时输出。
+
 ## 4. 缓存与刷新
 
 修改 remark/rehype 插件后，Astro dev 可能继续提供旧的 Markdown 编译结果。典型信号是：新 CSS 已出现，但插件新增的 class 或 DOM 结构不存在。

@@ -109,6 +109,40 @@ export function remarkFeatureProbes() {
 			if (node.type === "containerDirective" && node.name === "steps") {
 				syntaxes.add("steps");
 			}
+			if (node.type === "containerDirective" && node.name === "tuack-table") {
+				syntaxes.add("tuack-table");
+			}
+			if (
+				node.type === "containerDirective" &&
+				node.name === "luogu-align-center"
+			) {
+				syntaxes.add("align-center");
+			}
+			if (node.type === "containerDirective" && node.name === "epigraph") {
+				syntaxes.add("epigraph");
+			}
+			if (
+				node.type === "containerDirective" &&
+				node.name.startsWith("callfold-")
+			) {
+				syntaxes.add("callfold");
+			}
+			if (
+				node.type === "table" &&
+				node.children.some((row) =>
+					row.children?.some((cell) =>
+						cell.children?.some((child) =>
+							child.children?.some(
+								(text) =>
+									text.type === "text" &&
+									["^", "<"].includes(text.value.trim()),
+							),
+						),
+					),
+				)
+			) {
+				syntaxes.add("table-span");
+			}
 			if (
 				node.type === "containerDirective" &&
 				[
@@ -119,6 +153,10 @@ export function remarkFeatureProbes() {
 					"warning",
 					"caution",
 					"admonition-details",
+					"callfold-info",
+					"callfold-success",
+					"callfold-warning",
+					"callfold-error",
 				].includes(node.name)
 			) {
 				syntaxes.add("admonition");

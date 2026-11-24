@@ -1,0 +1,29 @@
+.custom-md .m3-luogu-tuack-table th,
+.custom-md .m3-luogu-tuack-table td {
+	text-align: center;
+}
+
+.custom-md .m3-luogu-tuack-table tbody tr:nth-child(even) {
+	background: color-mix(in oklab, var(--surface-container) 55%, transparent);
+}
+
+.custom-md .m3-luogu-align-center {
+	text-align: center;
+}
+
+.custom-md .m3-luogu-align-center > :is(img, table) {
+	margin-inline: auto;
+}
+
+.custom-md figure.m3-luogu-epigraph {
+	margin: var(--m3e-space-6) 0;
+	padding-inline-start: var(--m3e-space-4);
+	border-inline-start: var(--m3e-space-1) solid var(--primary);
+	color: var(--on-surface-variant);
+}
+
+.custom-md .m3-luogu-epigraph figcaption {
+	margin-block-start: var(--m3e-space-2);
+	font: var(--m3e-type-label-large);
+	text-align: end;
+}

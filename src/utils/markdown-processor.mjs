@@ -35,6 +35,7 @@ import { remarkCollapsePanels } from "../plugins/markdown/remark-collapse-panels
 import { remarkContentAnnotations } from "../plugins/markdown/remark-content-annotations.mjs";
 import { remarkFields } from "../plugins/markdown/remark-fields.mjs";
 import { remarkIncludes } from "../plugins/markdown/remark-includes.mjs";
+import { remarkLuogu } from "../plugins/markdown/remark-luogu.mjs";
 import { remarkMarker } from "../plugins/markdown/remark-marker.mjs";
 import { remarkOptionGroups } from "../plugins/markdown/remark-option-groups.mjs";
 import { remarkYouTube } from "../plugins/markdown/remark-youtube.mjs";
@@ -49,6 +50,7 @@ import { MarkerComponent } from "../plugins/rehype-component-marker.mjs";
 import { SpoilerComponent } from "../plugins/rehype-component-spoiler.mjs";
 import { YouTubeComponent } from "../plugins/rehype-component-youtube.mjs";
 import { rehypeMarkdownImages } from "../plugins/rehype-markdown-images.mjs";
+import { rehypeLuoguTableSpans } from "../plugins/rehype-luogu-table-spans.mjs";
 import { rehypeResponsiveTables } from "../plugins/rehype-responsive-tables.mjs";
 import { parseDirectiveNode } from "../plugins/remark-directive-rehype.js";
 import { remarkEscapeNumericColons } from "../plugins/remark-escape-numeric-colons.mjs";
@@ -64,6 +66,41 @@ const fieldI18nKeys = {
 	optional: "fieldOptional",
 	deprecated: "fieldDeprecated",
 };
+
+function directiveText(nodes) {
+	return (nodes ?? [])
+		.map((node) =>
+			node.type === "text"
+				? node.value
+				: Array.isArray(node.children)
+					? directiveText(node.children)
+					: "",
+		)
+		.join("");
+}
+
+function renderEpigraph(properties, children) {
+	const content = [...children];
+	const label = properties["has-directive-label"]
+		? content.shift()
+		: null;
+	return {
+		type: "element",
+		tagName: "figure",
+		properties: { className: ["m3-luogu-epigraph"] },
+		children: [
+			...content,
+			...(label
+				? [{
+					type: "element",
+					tagName: "figcaption",
+					properties: {},
+					children: [{ type: "text", value: directiveText(label.children) }],
+				}]
+				: []),
+		],
+	};
+}
 
 /**
  * 站点统一 Remark 插件链（单一事实来源）
@@ -85,6 +122,7 @@ export const siteRemarkPlugins = [
 	remarkReadingTime,
 	remarkExcerpt,
 	remarkDirective,
+	remarkLuogu,
 	remarkAcFun,
 	remarkAudioReader,
 	remarkArtPlayer,
@@ -137,6 +175,27 @@ export const siteRehypePlugins = [
 				caution: (x, y) => AdmonitionComponent(x, y, "caution"),
 				warning: (x, y) => AdmonitionComponent(x, y, "warning"),
 				"admonition-details": (x, y) => AdmonitionComponent(x, y, "details"),
+				"tuack-table": (_properties, children) => ({
+					type: "element",
+					tagName: "div",
+					properties: { className: ["m3-luogu-tuack-table"] },
+					children,
+				}),
+				"luogu-align-center": (_properties, children) => ({
+					type: "element",
+					tagName: "div",
+					properties: { className: ["m3-luogu-align-center"] },
+					children,
+				}),
+				epigraph: renderEpigraph,
+				"callfold-info": (x, y) =>
+					AdmonitionComponent({ ...x, callfold: true }, y, "info"),
+				"callfold-success": (x, y) =>
+					AdmonitionComponent({ ...x, callfold: true }, y, "tip"),
+				"callfold-warning": (x, y) =>
+					AdmonitionComponent({ ...x, callfold: true }, y, "warning"),
+				"callfold-error": (x, y) =>
+					AdmonitionComponent({ ...x, callfold: true }, y, "caution"),
 				"m3-mark": MarkerComponent,
 				spoiler: SpoilerComponent,
 			},
@@ -173,6 +232,7 @@ export const siteRehypePlugins = [
 			noReferrerDomains: siteConfig.imageOptimization?.noReferrerDomains ?? [],
 		},
 	],
+	rehypeLuoguTableSpans,
 	rehypeResponsiveTables,
 ];
 
