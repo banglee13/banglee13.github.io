@@ -165,12 +165,16 @@
     /* !important boundary: Tailwind Typography owns prose cell spacing; the responsive table owns its cell geometry. */
     th {
       @apply text-left bg-[var(--surface-container-high)] text-[var(--on-surface)] font-semibold;
-      padding: var(--m3e-space-3) var(--m3e-space-4) !important;
+      padding:
+        var(--md-table-cell-padding-block, var(--m3e-space-3))
+        var(--md-table-cell-padding-inline, var(--m3e-space-4)) !important;
     }
 
     td {
       @apply text-[var(--on-surface-variant)];
-      padding: var(--m3e-space-2) var(--m3e-space-4) !important;
+      padding:
+        var(--md-table-cell-padding-block, var(--m3e-space-2))
+        var(--md-table-cell-padding-inline, var(--m3e-space-4)) !important;
     }
 
     th,
