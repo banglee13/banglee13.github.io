@@ -124,6 +124,9 @@ export const siteConfig: SiteConfig = withUserConfig("site", {
 		style: "dual",
 	},
 	favicon: [
+		{
+			src: "/favicon/logo.png",
+		},
 		// Leave this array empty to use the default favicon
 		// {
 		//   src: '/favicon/icon.png',    // Path of the favicon, relative to the /public directory
