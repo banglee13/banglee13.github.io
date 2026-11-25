@@ -7,29 +7,25 @@
 
 .custom-md .m3-luogu-tuack-table > .markdown-table-scroll > table {
 	--md-table-cell-padding-block: var(--m3e-space-2);
-	--md-table-cell-padding-inline: var(--m3e-space-4);
+	--md-table-cell-padding-inline: var(--m3e-space-3);
 	width: max-content;
 	min-width: 0;
 	border-collapse: collapse;
 	border-radius: 0;
-	color: var(--on-surface);
-	font: var(--m3e-type-headline-small);
 	/* In a collapsed grid, hidden edges suppress the outer cell borders even across rowspans. */
 	border: hidden;
-	border-block-end: var(--m3e-space-1) solid currentColor;
+	border-block-end: 2px solid var(--outline);
 }
 
 .custom-md .m3-luogu-tuack-table :is(th, td) {
-	border: 1px solid currentColor;
+	border: 1px solid var(--outline-variant);
 	background: transparent;
-	color: inherit;
-	font-weight: inherit;
 	text-align: center;
 	vertical-align: middle;
 }
 
 .custom-md .m3-luogu-tuack-table thead th {
-	border-block-end: 3px solid currentColor;
+	border-block-end: 2px solid var(--outline);
 }
 
 .custom-md .m3-luogu-align-center {
